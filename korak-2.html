@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<title>Nina Quiz Korak 2</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#0d0b12;--card:#181320;--border:#2a2236;--ink:#e8e1ef;--soft:#b3a6c4;--muted:#75688a;--accent:#c77dff;--accent2:#ff8fcf;--deep:#8a4fd6;--rose:#ff9ec4;--top:env(safe-area-inset-top,0px);--bot:env(safe-area-inset-bottom,0px)}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:radial-gradient(900px 500px at 80% -10%,rgba(138,79,214,.18),transparent 60%),var(--bg);color:var(--ink);line-height:1.7;min-height:100dvh}
+body.sl .lang-en{display:none!important}
+body.en .lang-sl{display:none!important}
+.ios-tip{max-width:720px;margin:calc(12px + var(--top)) auto 0;padding:0 16px}
+.ios-tip-inner{background:#1f1530;border:1px solid #4a3568;border-radius:14px;padding:14px 16px;font-size:.86rem;color:var(--soft)}
+.ios-tip-inner strong{color:var(--accent2)}
+.lang-switch{position:fixed;top:calc(10px + var(--top));right:14px;z-index:300;display:flex;background:rgba(20,17,28,.92);border:1px solid var(--border);border-radius:999px;padding:4px}
+.lang-switch button{border:none;background:transparent;color:var(--muted);font-size:.82rem;font-weight:600;padding:8px 16px;border-radius:999px}
+.lang-switch button.active{background:linear-gradient(135deg,var(--deep),var(--accent));color:#fff}
+.hero{text-align:center;padding:calc(70px + var(--top)) 20px 30px}
+.hero .moon{font-size:2rem;display:block;margin-bottom:8px}
+.hero h1{font-size:2rem;font-weight:700;color:#f6eefc;margin-bottom:12px;line-height:1.2}
+.hero p{font-size:1rem;color:var(--soft);max-width:560px;margin:0 auto}
+.hero .hint{margin-top:16px;font-size:.85rem;color:var(--muted);font-style:italic;max-width:520px;margin-left:auto;margin-right:auto}
+.recap{max-width:720px;margin:0 auto;padding:0 16px}
+.recap-inner{background:linear-gradient(160deg,#1e1530,#140f1d);border:1px solid #3a2a52;border-radius:16px;padding:18px}
+.recap-inner h3{color:var(--accent2);font-size:1.1rem;margin-bottom:10px}
+.recap-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.recap-tag{background:rgba(199,125,255,.12);border:1px solid rgba(199,125,255,.25);color:var(--soft);font-size:.78rem;padding:5px 10px;border-radius:999px}
+.recap-inner p{font-size:.88rem;color:var(--muted)}
+.progress-wrap{position:sticky;top:0;z-index:100;background:rgba(13,11,18,.92);border-bottom:1px solid #1d1729}
+.progress{height:3px;background:linear-gradient(90deg,var(--deep),var(--accent),var(--accent2));width:0%;transition:width .3s}
+.container{max-width:720px;margin:0 auto;padding:14px 16px calc(180px + var(--bot))}
+.section{margin-top:36px}
+.section-header{display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid #221b30;margin-bottom:6px}
+.section-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:#241a32;border:1px solid #322843}
+.section-header h2{font-size:1.35rem;color:#f0e8f8}
+.section-subtitle{font-size:.86rem;color:var(--muted);margin:8px 0 18px;font-style:italic}
+.question-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px}
+.question-card:focus-within{border-color:var(--accent)}
+.q-num{font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+.q-text{font-size:1.02rem;font-weight:500;margin-bottom:4px}
+.q-hint{font-size:.8rem;color:var(--muted);margin-bottom:12px;font-style:italic}
+textarea,select{width:100%;background:#0c0a12;border:1px solid #241d33;border-radius:12px;padding:14px;color:var(--ink);font-family:inherit;font-size:16px;line-height:1.6;-webkit-appearance:none}
+textarea{min-height:92px;resize:vertical}
+select{cursor:pointer}
+textarea:focus,select:focus{outline:none;border-color:var(--accent)}
+.button-area{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(0deg,var(--bg) 60%,transparent);padding:24px 14px calc(16px + var(--bot));display:flex;flex-wrap:wrap;gap:8px;justify-content:center;z-index:50}
+.btn{padding:14px 20px;border-radius:14px;font-family:inherit;font-size:1rem;font-weight:600;border:none;touch-action:manipulation}
+.btn-main{background:linear-gradient(135deg,var(--deep),var(--accent),var(--accent2));color:#fff;flex:1 1 100%;order:-1}
+.btn-sec{background:#1a1426;color:var(--soft);border:1px solid var(--border);flex:1 1 0}
+.stats{text-align:center;padding:12px;font-size:.84rem;color:var(--muted)}
+.footer-note{text-align:center;font-style:italic;color:var(--accent);margin-top:20px}
+.toast{position:fixed;top:calc(56px + var(--top));left:50%;transform:translate(-50%,-10px);background:#1f1530;border:1px solid #3a2a52;color:var(--accent2);padding:12px 20px;border-radius:12px;font-size:.9rem;z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.autosave{position:fixed;top:calc(54px + var(--top));right:14px;font-size:.74rem;color:#4a3f5c;z-index:150}
+</style>
+</head>
+<body class="sl">
+
+<div class="lang-switch">
+<button type="button" id="btn-sl" class="active" onclick="setLang('sl')">SL</button>
+<button type="button" id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+<div class="autosave" id="autosave"></div>
+<div class="toast" id="toast"></div>
+
+<div class="ios-tip">
+<div class="ios-tip-inner">
+<span class="lang-sl"><strong>iPhone navodilo:</strong> Če vidiš samo prazno stran, pritisni ikono za deljenje (kvadratek s puščico) zgoraj ali spodaj in izberi <strong>Odpri v Safariju</strong>. Ne ostani v WhatsAppu.</span>
+<span class="lang-en"><strong>iPhone tip:</strong> If you only see a blank page, tap the share icon and choose <strong>Open in Safari</strong>. Don't stay in WhatsApp.</span>
+</div>
+</div>
+
+<div class="hero">
+<span class="moon">&#127769;</span>
+<h1><span class="lang-sl">Korak 2 — Poglabljamo</span><span class="lang-en">Step 2 — Going deeper</span></h1>
+<p><span class="lang-sl">Super odgovori! Na podlagi tvojih odgovorov smo izluščili 3 smeri, ki ti najbolj ustrezajo. Zdaj gremo bolj v detajle — da najdemo prave službe.</span><span class="lang-en">Great answers! Based on what you shared, we found 3 directions that fit you best. Now let's go into more detail — so we can find the right jobs.</span></p>
+<div class="hint"><span class="lang-sl">Tvoji odgovori se sproti shranjujejo na tem telefonu. Na koncu pritisni &laquo;Pošlji&raquo; in izberi WhatsApp ali Sporočila, da mi jih pošlješ. &#128049;&#10084;&#65039;</span><span class="lang-en">Your answers save on this phone as you go. At the end, tap &laquo;Send&raquo; and choose WhatsApp or Messages to send them to me. &#128049;&#10084;&#65039;</span></div>
+</div>
+
+<div class="recap">
+<div class="recap-inner">
+<h3><span class="lang-sl">Kaj smo razbrali iz koraka 1</span><span class="lang-en">What we learned from step 1</span></h3>
+<div class="recap-tags">
+<span class="recap-tag">&#128049; <span class="lang-sl">Živali</span><span class="lang-en">Animals</span></span>
+<span class="recap-tag">&#9881;&#65039; <span class="lang-sl">Proizvodnja</span><span class="lang-en">Production</span></span>
+<span class="recap-tag">&#127912; <span class="lang-sl">Detajli &amp; navodila</span><span class="lang-en">Details &amp; instructions</span></span>
+<span class="recap-tag">&#128101; <span class="lang-sl">Ekipa, ne stranke</span><span class="lang-en">Team, not customers</span></span>
+<span class="recap-tag">&#128683; <span class="lang-sl">Ne gostinstvo</span><span class="lang-en">No hospitality</span></span>
+</div>
+<p><span class="lang-sl">Ti ustreza delo z živalmi (okoljevarstveni tehnik, jahanje), gibalno delo v proizvodnji po navodilih, natančno ustvarjalno delo in sodelovanje s sodelavci. Ne želiš dela s strankami, otroki, starejšimi, težkega fizičnega dela na vremenu ali mobinga.</span><span class="lang-en">You fit work with animals (environmental technician, riding), active production work following instructions, precise creative work, and teamwork with colleagues. You don't want customer-facing work, children, elderly care, heavy outdoor work, or workplace bullying.</span></p>
+</div>
+</div>
+
+<div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
+
+<div class="container">
+
+<!-- A ZIVALI -->
+<div class="section">
+<div class="section-header"><div class="section-icon">&#128049;</div><h2><span class="lang-sl">A — Delo z živalmi</span><span class="lang-en">A — Working with animals</span></h2></div>
+<div class="section-subtitle"><span class="lang-sl">Tvoja najmočnejša smer. Povej, kaj bi te res osrečilo.</span><span class="lang-en">Your strongest direction. Tell us what would truly make you happy.</span></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 1</div><div class="q-text"><span class="lang-sl">Katera živalska dela te najbolj zanimajo? Izberi več, če želiš.</span><span class="lang-en">Which animal-related jobs interest you most? Pick several if you like.</span></div><div class="q-hint"><span class="lang-sl">Npr. zavetišče, veterinarska ambulanta (brez recepcije), konjušnica, zoo, trgovina z živalmi, pet sitting, čebelarstvo, ribogojstvo, delo na kmetiji z živalmi...</span><span class="lang-en">E.g. shelter, vet clinic (not reception), stable, zoo, pet shop, pet sitting, beekeeping, fish farming, farm work with animals...</span></div><textarea id="q1_1"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 2</div><div class="q-text"><span class="lang-sl">Bi raje delala z domačimi živalmi, kmetijskimi ali divjimi živalmi?</span><span class="lang-en">Would you rather work with pets, farm animals, or wild animals?</span></div><textarea id="q1_2"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 3</div><div class="q-text"><span class="lang-sl">Spomniš se kaj konkretnega iz šolanja okoljevarstvenega tehnika, kar bi rada ponovno delala?</span><span class="lang-en">Do you remember anything specific from your environmental technician studies you'd like to do again?</span></div><div class="q-hint"><span class="lang-sl">Predmeti o živalih, obnašanju, gojitvi, ekologiji...</span><span class="lang-en">Animal subjects, behavior, breeding, ecology...</span></div><textarea id="q1_3"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 4</div><div class="q-text"><span class="lang-sl">Ker si bila trenerka jahanja — bi rada poskusila delo v konjušnici ali na kmetiji s konji?</span><span class="lang-en">Since you were a riding trainer — would you like to try work at a stable or horse farm?</span></div><div class="q-hint"><span class="lang-sl">Negovanje konjev, hranjenje, čiščenje boxov, pomoč pri treningih...</span><span class="lang-en">Horse care, feeding, cleaning stalls, helping with training...</span></div><textarea id="q1_4"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 5</div><div class="q-text"><span class="lang-sl">Na veterinarskem bi morale biti tudi lastniki živali (stranke). Kako bi se počutila ob tem?</span><span class="lang-en">At a vet clinic there would also be pet owners (customers). How would you feel about that?</span></div><div class="q-hint"><span class="lang-sl">Samo kratki stiki? Samo če so prijazni? Sploh ne?</span><span class="lang-en">Only brief contact? Only if they're kind? Not at all?</span></div><textarea id="q1_5"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 6</div><div class="q-text"><span class="lang-sl">Ali bi šla na kratek tečaj ali usposabljanje za živali (npr. 2–6 mesecev), če bi to odprlo boljšo službo?</span><span class="lang-en">Would you take a short course or training for animals (e.g. 2–6 months) if it opened a better job?</span></div><textarea id="q1_6"></textarea></div>
+</div>
+
+<!-- B PROIZVODNJA -->
+<div class="section">
+<div class="section-header"><div class="section-icon">&#9881;&#65039;</div><h2><span class="lang-sl">B — Proizvodnja</span><span class="lang-en">B — Production</span></h2></div>
+<div class="section-subtitle"><span class="lang-sl">Gibalno delo v zaprtih prostorih, po navodilih — kot si omenila.</span><span class="lang-en">Active indoor work, following instructions — as you mentioned.</span></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 7</div><div class="q-text"><span class="lang-sl">Katera vrsta proizvodnje te zanima?</span><span class="lang-en">Which type of production interests you?</span></div><div class="q-hint"><span class="lang-sl">Hrana, farmacevtska, kovina/plastika, pakiranje, tekstil, avtomobilska, elektronika...</span><span class="lang-en">Food, pharmaceutical, metal/plastic, packaging, textile, automotive, electronics...</span></div><textarea id="q2_1"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 8</div><div class="q-text"><span class="lang-sl">Bi delala po jasnih navodilih in ponavljajočih korakih — kot pri pobarvanki?</span><span class="lang-en">Would you work with clear instructions and repeating steps — like with coloring books?</span></div><div class="q-hint"><span class="lang-sl">Zakaj da ali zakaj ne?</span><span class="lang-en">Why yes or why not?</span></div><textarea id="q2_2"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 9</div><div class="q-text"><span class="lang-sl">Bi delala v čisti, klimatizirani proizvodnji (npr. tovarna, pakiranje)?</span><span class="lang-en">Would you work in a clean, climate-controlled factory (e.g. packaging, assembly)?</span></div><textarea id="q2_3"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 10</div><div class="q-text"><span class="lang-sl">Bi delala z detajli in kontrolo kakovosti (preverjanje izdelkov, iskanje napak)?</span><span class="lang-en">Would you work with details and quality control (checking products, finding defects)?</span></div><div class="q-hint"><span class="lang-sl">To ustreza tvoji natančnosti pri pobarvankah.</span><span class="lang-en">This fits your precision with coloring books.</span></div><textarea id="q2_4"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 11</div><div class="q-text"><span class="lang-sl">Kaj te skrbi ali moti pri delu v proizvodnji?</span><span class="lang-en">What worries or bothers you about working in production?</span></div><div class="q-hint"><span class="lang-sl">Hrup, monotonija, izmene, fizično naporno...</span><span class="lang-en">Noise, monotony, shifts, physically tiring...</span></div><textarea id="q2_5"></textarea></div>
+</div>
+
+<!-- C DETAJLI -->
+<div class="section">
+<div class="section-header"><div class="section-icon">&#127912;</div><h2><span class="lang-sl">C — Detajli, ustvarjalnost &amp; računalnik</span><span class="lang-en">C — Details, creativity &amp; computer</span></h2></div>
+<div class="section-subtitle"><span class="lang-sl">Natančno delo po navodilih + osnovno delo za računalnikom.</span><span class="lang-en">Precise work following instructions + basic computer work.</span></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 12</div><div class="q-text"><span class="lang-sl">Bi delala od doma (npr. vnos podatkov, ilustracije po predlogi, urejanje dokumentov)?</span><span class="lang-en">Would you work from home (e.g. data entry, illustrations from templates, document editing)?</span></div><div class="q-hint"><span class="lang-sl">Kaj od tega te zanima, kaj ne?</span><span class="lang-en">What interests you, what doesn't?</span></div><textarea id="q3_1"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 13</div><div class="q-text"><span class="lang-sl">Bi raje delala v pisarni podjetja (ne od doma), brez stika s strankami?</span><span class="lang-en">Would you rather work in a company office (not from home), without customer contact?</span></div><textarea id="q3_2"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 14</div><div class="q-text"><span class="lang-sl">Katere programe na računalniku poznaš ali uporabljaš?</span><span class="lang-en">Which computer programs do you know or use?</span></div><div class="q-hint"><span class="lang-sl">Word, Excel, Canva, Photoshop, druge...</span><span class="lang-en">Word, Excel, Canva, Photoshop, others...</span></div><textarea id="q3_3"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 15</div><div class="q-text"><span class="lang-sl">Ali bi šla na kratek tečaj (npr. Excel, Canva, osnove grafičnega dizajna), če bi to pomagalo pri službi?</span><span class="lang-en">Would you take a short course (e.g. Excel, Canva, basic graphic design) if it helped with a job?</span></div><textarea id="q3_4"></textarea></div>
+</div>
+
+<!-- D REGIJA -->
+<div class="section">
+<div class="section-header"><div class="section-icon">&#128205;</div><h2><span class="lang-sl">D — Tvoja regija (splošno)</span><span class="lang-en">D — Your region (general)</span></h2></div>
+<div class="section-subtitle"><span class="lang-sl">Samo približna regija — ne potrebujemo natančnega naslova. To nam pomaga najti službe v tvoji bližini.</span><span class="lang-en">Only approximate region — we don't need your exact address. This helps us find jobs near you.</span></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 16</div><div class="q-text"><span class="lang-sl">V kateri regiji približno živiš ali bi rada delala?</span><span class="lang-en">In which region do you roughly live or want to work?</span></div><div class="q-hint"><span class="lang-sl">Izberi najbližjo regijo. To je dovolj.</span><span class="lang-en">Pick the nearest region. That's enough.</span></div>
+<select id="q4_1"></select></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 17</div><div class="q-text"><span class="lang-sl">Kako daleč si pripravljena potovati do službe?</span><span class="lang-en">How far are you willing to travel to work?</span></div><div class="q-hint"><span class="lang-sl">Npr. 20 min, 40 min, 1 ura, odvisno od plače...</span><span class="lang-en">E.g. 20 min, 40 min, 1 hour, depends on pay...</span></div><textarea id="q4_2"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 18</div><div class="q-text"><span class="lang-sl">Imaš vozniško dovoljenje ali avto? Ali se zanašaš na javni prevoz?</span><span class="lang-en">Do you have a driver's license or car? Or do you rely on public transport?</span></div><textarea id="q4_3"></textarea></div>
+</div>
+
+<!-- E POGOJI -->
+<div class="section">
+<div class="section-header"><div class="section-icon">&#128176;</div><h2><span class="lang-sl">E — Pogoji &amp; prioritete</span><span class="lang-en">E — Conditions &amp; priorities</span></h2></div>
+<div class="section-subtitle"><span class="lang-sl">Kaj mora služba ponuditi, da bi bila zate smiselna.</span><span class="lang-en">What a job must offer to make sense for you.</span></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 19</div><div class="q-text"><span class="lang-sl">Kakšna minimalna mesečna plača bi morala biti, da bi preživela (približno)?</span><span class="lang-en">What minimum monthly pay would you need to live on (roughly)?</span></div><div class="q-hint"><span class="lang-sl">Približno število je v redu.</span><span class="lang-en">An approximate number is fine.</span></div><textarea id="q5_1"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 20</div><div class="q-text"><span class="lang-sl">Polni ali delni delovni čas? Kdaj bi lahko začela?</span><span class="lang-en">Full-time or part-time? When could you start?</span></div><textarea id="q5_2"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 21</div><div class="q-text"><span class="lang-sl">Kaj je pri službi NAJPOMEMBNEJŠE? Razvrsti po pomembnosti.</span><span class="lang-en">What matters MOST in a job? Rank by importance.</span></div><div class="q-hint"><span class="lang-sl">Dobra plača, prijazni sodelavci, mirni vodje, rutina, blizu doma, delo z živalmi, učenje novih stvari...</span><span class="lang-en">Good pay, kind colleagues, calm managers, routine, close to home, work with animals, learning new things...</span></div><textarea id="q5_3"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 22</div><div class="q-text"><span class="lang-sl">Od 1 do 10 — kako zanimajo te 3 smeri? (Živali / Proizvodnja / Detajli+računalnik)</span><span class="lang-en">From 1 to 10 — how interested are you in these 3 directions? (Animals / Production / Details+computer)</span></div><div class="q-hint"><span class="lang-sl">Npr. Živali: 10, Proizvodnja: 7, Detajli: 5</span><span class="lang-en">E.g. Animals: 10, Production: 7, Details: 5</span></div><textarea id="q5_4"></textarea></div>
+
+<div class="question-card"><div class="q-num qn">Vprašanje 23</div><div class="q-text"><span class="lang-sl">Še kaj, kar bi morala vedeti, preden poiščemo konkretne službe?</span><span class="lang-en">Anything else I should know before we search for concrete jobs?</span></div><textarea id="q5_5"></textarea></div>
+</div>
+
+<div class="stats" id="stats">0 / 23 odgovorjenih</div>
+<div class="footer-note"><span class="lang-sl">Vzemi si čas. To je tvoja pot. &#128150;</span><span class="lang-en">Take your time. This is your path. &#128150;</span></div>
+</div>
+
+<div class="button-area">
+<button type="button" class="btn btn-main" id="sendBtn" onclick="sendAnswers()"><span class="lang-sl">&#128228; Pošlji odgovore</span><span class="lang-en">&#128228; Send answers</span></button>
+<button type="button" class="btn btn-sec" onclick="copyAnswers()"><span class="lang-sl">&#128203; Kopiraj</span><span class="lang-en">&#128203; Copy</span></button>
+<button type="button" class="btn btn-sec" onclick="clearAll()"><span class="lang-sl">&#128465; Pobriši</span><span class="lang-en">&#128465; Clear</span></button>
+</div>
+
+<script>
+var STORAGE_KEY='ninaQuizK2';
+var LANG_KEY='ninaQuizLang';
+var IDS=['q1_1','q1_2','q1_3','q1_4','q1_5','q1_6','q2_1','q2_2','q2_3','q2_4','q2_5','q3_1','q3_2','q3_3','q3_4','q4_1','q4_2','q4_3','q5_1','q5_2','q5_3','q5_4','q5_5'];
+var TOTAL=IDS.length;
+
+var LABELS_SL={
+q1_1:'Katera živalska dela te najbolj zanimajo? Izberi več, če želiš.',q1_2:'Bi raje delala z domačimi živalmi, kmetijskimi ali divjimi živalmi?',q1_3:'Spomniš se kaj konkretnega iz šolanja okoljevarstvenega tehnika, kar bi rada ponovno delala?',q1_4:'Ker si bila trenerka jahanja — bi rada poskusila delo v konjušnici ali na kmetiji s konji?',q1_5:'Na veterinarskem bi morale biti tudi lastniki živali (stranke). Kako bi se počutila ob tem?',q1_6:'Ali bi šla na kratek tečaj ali usposabljanje za živali (npr. 2–6 mesecev), če bi to odprlo boljšo službo?',
+q2_1:'Katera vrsta proizvodnje te zanima?',q2_2:'Bi delala po jasnih navodilih in ponavljajočih korakih — kot pri pobarvanki?',q2_3:'Bi delala v čisti, klimatizirani proizvodnji (npr. tovarna, pakiranje)?',q2_4:'Bi delala z detajli in kontrolo kakovosti (preverjanje izdelkov, iskanje napak)?',q2_5:'Kaj te skrbi ali moti pri delu v proizvodnji?',
+q3_1:'Bi delala od doma (npr. vnos podatkov, ilustracije po predlogi, urejanje dokumentov)?',q3_2:'Bi raje delala v pisarni podjetja (ne od doma), brez stika s strankami?',q3_3:'Katere programe na računalniku poznaš ali uporabljaš?',q3_4:'Ali bi šla na kratek tečaj (npr. Excel, Canva, osnove grafičnega dizajna), če bi to pomagalo pri službi?',
+q4_1:'V kateri regiji približno živiš ali bi rada delala?',q4_2:'Kako daleč si pripravljena potovati do službe?',q4_3:'Imaš vozniško dovoljenje ali avto? Ali se zanašaš na javni prevoz?',
+q5_1:'Kakšna minimalna mesečna plača bi morala biti, da bi preživela (približno)?',q5_2:'Polni ali delni delovni čas? Kdaj bi lahko začela?',q5_3:'Kaj je pri službi NAJPOMEMBNEJŠE? Razvrsti po pomembnosti.',q5_4:'Od 1 do 10 — kako zanimajo te 3 smeri? (Živali / Proizvodnja / Detajli+računalnik)',q5_5:'Še kaj, kar bi morala vedeti, preden poiščemo konkretne službe?'
+};
+var LABELS_EN={
+q1_1:'Which animal-related jobs interest you most? Pick several if you like.',q1_2:'Would you rather work with pets, farm animals, or wild animals?',q1_3:"Do you remember anything specific from your environmental technician studies you'd like to do again?",q1_4:'Since you were a riding trainer — would you like to try work at a stable or horse farm?',q1_5:'At a vet clinic there would also be pet owners (customers). How would you feel about that?',q1_6:'Would you take a short course or training for animals (e.g. 2–6 months) if it opened a better job?',
+q2_1:'Which type of production interests you?',q2_2:'Would you work with clear instructions and repeating steps — like with coloring books?',q2_3:'Would you work in a clean, climate-controlled factory (e.g. packaging, assembly)?',q2_4:'Would you work with details and quality control (checking products, finding defects)?',q2_5:'What worries or bothers you about working in production?',
+q3_1:'Would you work from home (e.g. data entry, illustrations from templates, document editing)?',q3_2:'Would you rather work in a company office (not from home), without customer contact?',q3_3:'Which computer programs do you know or use?',q3_4:'Would you take a short course (e.g. Excel, Canva, basic graphic design) if it helped with a job?',
+q4_1:'In which region do you roughly live or want to work?',q4_2:'How far are you willing to travel to work?',q4_3:"Do you have a driver's license or car? Or do you rely on public transport?",
+q5_1:'What minimum monthly pay would you need to live on (roughly)?',q5_2:'Full-time or part-time? When could you start?',q5_3:'What matters MOST in a job? Rank by importance.',q5_4:'From 1 to 10 — how interested are you in these 3 directions? (Animals / Production / Details+computer)',q5_5:'Anything else I should know before we search for concrete jobs?'
+};
+var REGION_OPTS={
+sl:[{v:'',l:'— izberi regijo —'},{v:'ljubljana',l:'Ljubljana in okolica'},{v:'maribor',l:'Maribor in okolica'},{v:'celje',l:'Celje in okolica'},{v:'koper',l:'Koper / Obala'},{v:'novo_mesto',l:'Novo mesto in okolica'},{v:'pomurje',l:'Pomurje'},{v:'koroska',l:'Koroška'},{v:'gorenjska',l:'Gorenjska'},{v:'notranjska',l:'Notranjska'},{v:'zasavje',l:'Zasavje'},{v:'posavje',l:'Posavje'},{v:'jugovzhod',l:'Jugovzhodna Slovenija'},{v:'drugo',l:'Druga regija (splošno)'}],
+en:[{v:'',l:'— choose region —'},{v:'ljubljana',l:'Ljubljana area'},{v:'maribor',l:'Maribor area'},{v:'celje',l:'Celje area'},{v:'koper',l:'Koper / Coast'},{v:'novo_mesto',l:'Novo mesto area'},{v:'pomurje',l:'Pomurje'},{v:'koroska',l:'Carinthia (Koroška)'},{v:'gorenjska',l:'Gorenjska'},{v:'notranjska',l:'Notranjska'},{v:'zasavje',l:'Zasavje'},{v:'posavje',l:'Posavje'},{v:'jugovzhod',l:'Southeast Slovenia'},{v:'drugo',l:'Other region (general)'}]
+};
+
+function renderRegion(){
+var sel=document.getElementById('q4_1');
+if(!sel)return;
+var cur=sel.value;
+var opts=REGION_OPTS[getLang()];
+var html='';
+for(var i=0;i<opts.length;i++)html+='<option value="'+opts[i].v+'">'+opts[i].l+'</option>';
+sel.innerHTML=html;
+if(cur)sel.value=cur;
+}
+
+function getLang(){return document.body.className==='en'?'en':'sl';}
+
+function setLang(lang){
+document.body.className=lang;
+document.getElementById('btn-sl').className=lang==='sl'?'active':'';
+document.getElementById('btn-en').className=lang==='en'?'active':'';
+try{localStorage.setItem(LANG_KEY,lang);}catch(e){}
+renderRegion();
+updateQNumbers();
+updateProgress();
+}
+
+function updateQNumbers(){
+var lang=getLang();
+var nums=document.querySelectorAll('.qn');
+for(var i=0;i<nums.length;i++){
+nums[i].textContent=(lang==='sl'?'Vprašanje ':'Question ')+(i+1);
+}
+var ph=lang==='sl'?'Piši kar po svoje...':'Just write freely...';
+var tas=document.querySelectorAll('textarea');
+for(var j=0;j<tas.length;j++)tas[j].placeholder=ph;
+}
+
+function saveAnswers(){
+var data={};
+for(var i=0;i<IDS.length;i++){
+var el=document.getElementById(IDS[i]);
+if(el)data[IDS[i]]=el.value;
+}
+try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}catch(e){}
+var a=document.getElementById('autosave');
+a.textContent=getLang()==='sl'?'✨ shranjeno':'✨ saved';
+setTimeout(function(){a.textContent='';},1500);
+updateProgress();
+}
+
+function loadAnswers(){
+try{
+var saved=localStorage.getItem(STORAGE_KEY);
+if(saved){
+var data=JSON.parse(saved);
+for(var k in data){
+var el=document.getElementById(k);
+if(el)el.value=data[k];
+}
+}
+}catch(e){}
+}
+
+function updateProgress(){
+var filled=0;
+for(var i=0;i<IDS.length;i++){
+var el=document.getElementById(IDS[i]);
+if(el&&el.value.trim())filled++;
+}
+document.getElementById('progressBar').style.width=(filled/TOTAL*100)+'%';
+var s=document.getElementById('stats');
+s.textContent=getLang()==='sl'?(filled+' / '+TOTAL+' odgovorjenih'):(filled+' / '+TOTAL+' answered');
+}
+
+function getVal(id){
+var el=document.getElementById(id);
+if(!el||!el.value.trim())return getLang()==='sl'?'(brez odgovora)':'(no answer)';
+if(id==='q4_1')return el.options[el.selectedIndex].text;
+return el.value.trim();
+}
+
+function buildText(){
+var lang=getLang();
+var labels=lang==='sl'?LABELS_SL:LABELS_EN;
+var line='========================================\n';
+var t=line;
+t+=(lang==='sl'?'  NINA — KORAK 2: POGLABLJANJE\n':'  NINA — STEP 2: GOING DEEPER\n');
+t+=(lang==='sl'?'  Datum: ':'  Date: ')+new Date().toLocaleDateString(lang==='sl'?'sl-SI':'en-GB')+'\n';
+t+=line+'\n';
+for(var i=0;i<IDS.length;i++){
+t+=labels[IDS[i]]+'\n'+getVal(IDS[i])+'\n\n';
+}
+t+=line+(lang==='sl'?'  KONEC — korak 3\n':'  END — step 3\n')+line;
+return t;
+}
+
+function showToast(msg){
+var t=document.getElementById('toast');
+t.textContent=msg;
+t.className='toast show';
+setTimeout(function(){t.className='toast';},3000);
+}
+
+function sendAnswers(){
+var text=buildText();
+if(navigator.share){
+navigator.share({title:getLang()==='sl'?'Nina Korak 2':'Nina Step 2',text:text}).then(function(){
+showToast(getLang()==='sl'?'Super! Izberi WhatsApp.':'Nice! Pick WhatsApp.');
+}).catch(function(e){if(e.name!=='AbortError')copyAnswers();});
+}else{copyAnswers();}
+}
+
+function copyAnswers(){
+var text=buildText();
+if(navigator.clipboard&&navigator.clipboard.writeText){
+navigator.clipboard.writeText(text).then(function(){
+showToast(getLang()==='sl'?'Kopirano! Prilepi v WhatsApp.':'Copied! Paste in WhatsApp.');
+});
+return;
+}
+var ta=document.createElement('textarea');
+ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';
+document.body.appendChild(ta);ta.select();
+try{document.execCommand('copy');showToast(getLang()==='sl'?'Kopirano!':'Copied!');}catch(e){}
+document.body.removeChild(ta);
+}
+
+function clearAll(){
+var msg=getLang()==='sl'?'Res pobrišem vse odgovore? Tega ni mogoče razveljaviti.':'Really delete all answers? This cannot be undone.';
+if(!confirm(msg))return;
+for(var i=0;i<IDS.length;i++){var el=document.getElementById(IDS[i]);if(el)el.value='';}
+try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+updateProgress();
+}
+
+(function init(){
+var lang='sl';
+try{lang=localStorage.getItem(LANG_KEY)||'sl';}catch(e){}
+setLang(lang);
+renderRegion();
+loadAnswers();
+updateProgress();
+var els=document.querySelectorAll('textarea,select');
+for(var i=0;i<els.length;i++){
+els[i].addEventListener('input',saveAnswers);
+els[i].addEventListener('change',saveAnswers);
+}
+})();
+</script>
+</body>
+</html>

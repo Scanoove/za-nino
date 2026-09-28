@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<title>Nina — Dodatni zaslužek</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#0d0b12;--card:#181320;--border:#2a2236;--ink:#e8e1ef;--soft:#b3a6c4;--muted:#75688a;--accent:#c77dff;--accent2:#ff8fcf;--deep:#8a4fd6;--gold:#e8b86f;--green:#8fe3b0;--top:env(safe-area-inset-top,0px);--bot:env(safe-area-inset-bottom,0px)}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:radial-gradient(900px 500px at 80% -10%,rgba(138,79,214,.18),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(255,143,207,.08),transparent 60%),var(--bg);color:var(--ink);line-height:1.65;min-height:100dvh}
+body.sl .lang-en{display:none!important}
+body.en .lang-sl{display:none!important}
+.lang-switch{position:fixed;top:calc(10px + var(--top));right:14px;z-index:300;display:flex;background:rgba(20,17,28,.92);border:1px solid var(--border);border-radius:999px;padding:4px}
+.lang-switch button{border:none;background:transparent;color:var(--muted);font-size:.82rem;font-weight:600;padding:8px 16px;border-radius:999px}
+.lang-switch button.active{background:linear-gradient(135deg,var(--deep),var(--accent));color:#fff}
+.hero{text-align:center;padding:calc(70px + var(--top)) 20px 26px}
+.hero .moon{font-size:2rem;display:block;margin-bottom:8px}
+.hero h1{font-size:2rem;font-weight:700;color:#f6eefc;margin-bottom:12px;line-height:1.2}
+.hero p{font-size:1rem;color:var(--soft);max-width:560px;margin:0 auto}
+.container{max-width:720px;margin:0 auto;padding:6px 16px calc(150px + var(--bot))}
+.section-title{font-size:1.25rem;color:#f0e8f8;margin:34px 0 6px;padding-bottom:10px;border-bottom:1px solid #221b30}
+.section-sub{font-size:.86rem;color:var(--muted);font-style:italic;margin:8px 0 16px}
+.card{background:linear-gradient(160deg,var(--card),#140f1d);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px}
+.card.picked{border-color:var(--accent);box-shadow:0 0 0 3px rgba(199,125,255,.12)}
+.card-head{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.card-icon{width:44px;height:44px;flex-shrink:0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;background:#241a32;border:1px solid #322843}
+.card-head h3{font-size:1.06rem;color:#f6eefc;line-height:1.35}
+.fit{font-size:.8rem;color:var(--gold);letter-spacing:1px;margin-top:2px}
+.card p{font-size:.92rem;color:var(--soft);margin-bottom:10px}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.tag{font-size:.76rem;padding:4px 10px;border-radius:999px;background:rgba(199,125,255,.12);border:1px solid rgba(199,125,255,.25);color:var(--soft)}
+.tag.money{background:rgba(143,227,176,.10);border-color:rgba(143,227,176,.3);color:var(--green)}
+.steps{margin:6px 0 12px 18px;font-size:.88rem;color:var(--soft)}
+.steps li{margin-bottom:4px}
+.pick{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--accent2);font-weight:600;padding-top:10px;border-top:1px dashed #2a2236}
+.pick input{width:22px;height:22px;accent-color:#c77dff}
+.box{border-radius:16px;padding:16px 18px;margin:14px 0;font-size:.9rem}
+.box h4{margin-bottom:8px;font-size:1rem}
+.box ul{margin-left:18px}
+.box li{margin-bottom:5px}
+.box.info{background:#161a26;border:1px solid #2b3552;color:#b9c4e0}
+.box.info h4{color:#9fb6ff}
+.box.warn{background:#23151c;border:1px solid #4d2a3a;color:#e6bccb}
+.box.warn h4{color:var(--accent2)}
+.box.love{background:linear-gradient(160deg,#1e1530,#140f1d);border:1px solid #3a2a52;color:var(--soft);text-align:center}
+.box.love h4{color:var(--accent2)}
+textarea{width:100%;min-height:80px;margin-top:10px;background:#0c0a12;border:1px solid #241d33;border-radius:12px;padding:12px;color:var(--ink);font-family:inherit;font-size:16px;line-height:1.55;-webkit-appearance:none;resize:vertical}
+textarea:focus{outline:none;border-color:var(--accent)}
+.button-area{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(0deg,var(--bg) 60%,transparent);padding:24px 14px calc(16px + var(--bot));display:flex;gap:8px;justify-content:center;z-index:50}
+.btn{padding:14px 20px;border-radius:14px;font-family:inherit;font-size:1rem;font-weight:600;border:none;touch-action:manipulation}
+.btn-main{background:linear-gradient(135deg,var(--deep),var(--accent),var(--accent2));color:#fff;flex:2}
+.btn-sec{background:#1a1426;color:var(--soft);border:1px solid var(--border);flex:1}
+.toast{position:fixed;top:calc(56px + var(--top));left:50%;transform:translate(-50%,-10px);background:#1f1530;border:1px solid #3a2a52;color:var(--accent2);padding:12px 20px;border-radius:12px;font-size:.9rem;z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media print{
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@page{margin:10mm;background:#0d0b12}
+html,body{background:#0d0b12}
+.lang-switch,.button-area,.toast,.pick,.notes-card{display:none!important}
+.hero{padding-top:10px}
+.container{padding-bottom:0}
+.card,.box{break-inside:avoid;page-break-inside:avoid}
+.section-title{break-after:avoid;page-break-after:avoid}
+}
+</style>
+</head>
+<body class="sl">
+
+<div class="lang-switch">
+<button type="button" id="btn-sl" class="active" onclick="setLang('sl')">SL</button>
+<button type="button" id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+<div class="toast" id="toast"></div>
+
+<div class="hero">
+<span class="moon">&#127807;</span>
+<h1><span class="lang-sl">Dodaten zaslužek, ki je res tvoj</span><span class="lang-en">Extra income that truly fits you</span></h1>
+<p><span class="lang-sl">Ideje za dodaten denar poleg službe — izbrane glede na tvoje odgovore: živali, natančno delo, mir, brez stresnih strank. Označi, kar ti je všeč, in mi pošlji.</span><span class="lang-en">Ideas for extra money next to your job — picked based on your answers: animals, precise work, calm, no stressful customers. Tick what you like and send it to me.</span></p>
+</div>
+
+<div class="container">
+
+<!-- ŽIVALI -->
+<h2 class="section-title">&#128049; <span class="lang-sl">Z živalmi</span><span class="lang-en">With animals</span></h2>
+<div class="section-sub"><span class="lang-sl">Tvoja najmočnejša stran. Tukaj je tvoje znanje vredno denarja.</span><span class="lang-en">Your strongest side. Here your experience is worth money.</span></div>
+
+<div class="card" data-id="petsit">
+<div class="card-head"><div class="card-icon">&#128054;</div><div>
+<h3><span class="lang-sl">Varstvo živali &amp; sprehajanje psov</span><span class="lang-en">Pet sitting &amp; dog walking</span></h3>
+<div class="fit">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div>
+<p><span class="lang-sl">Ljudje gredo na dopust ali delajo dolgo — nekdo mora nahraniti mačko, sprehoditi psa ali prespati pri živalih. Stik z lastnikom je kratek, ves ostali čas si sama z živaljo.</span><span class="lang-en">People go on holiday or work long hours — someone has to feed the cat, walk the dog or stay overnight with the pets. Contact with the owner is short; the rest of the time it's just you and the animal.</span></p>
+<div class="meta"><span class="tag money"><span class="lang-sl">~8–15 € / sprehod · ~10–15 € / obisk · ~20–35 € / noč</span><span class="lang-en">~€8–15 / walk · ~€10–15 / visit · ~€20–35 / night</span></span><span class="tag"><span class="lang-sl">večeri &amp; vikendi</span><span class="lang-en">evenings &amp; weekends</span></span></div>
+<ol class="steps">
+<li><span class="lang-sl">Objavi oglas na <b>Bolha.com</b> in v lokalnih Facebook skupinah (npr. »psi [tvoje mesto]«).</span><span class="lang-en">Post an ad on <b>Bolha.com</b> and in local Facebook groups (e.g. "dogs [your town]").</span></li>
+<li><span class="lang-sl">Vprašaj veterinarske ambulante in trgovine za živali, če smeš pustiti letak.</span><span class="lang-en">Ask vet clinics and pet shops if you can leave a flyer.</span></li>
+<li><span class="lang-sl">Omeni izobrazbo okoljevarstvenega tehnika in izkušnje s konji — to ustvari zaupanje.</span><span class="lang-en">Mention your environmental technician training and horse experience — it builds trust.</span></li>
+</ol>
+<label class="pick"><input type="checkbox"> <span class="lang-sl">To me zanima</span><span class="lang-en">I'm interested</span></label>
+</div>
+
+<div class="card" data-id="stable">
+<div class="card-head"><div class="card-icon">&#128052;</div><div>
+<h3><span class="lang-sl">Pomoč v konjušnici &amp; varstvo konj</span><span class="lang-en">Stable help &amp; horse sitting</span></h3>
+<div class="fit">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div>
+<p><span class="lang-sl">Kot bivša trenerka jahanja znaš več kot večina. Zasebni lastniki konj pogosto iščejo nekoga za oskrbo, ko so odsotni, konjušnice pa pomoč ob vikendih (hranjenje, boxi, gibanje konj).</span><span class="lang-en">As a former riding trainer you know more than most. Private horse owners often need someone to care for their horse while they're away, and stables need weekend help (feeding, stalls, exercising horses).</span></p>
+<div class="meta"><span class="tag money"><span class="lang-sl">~7–12 € / uro ali dogovor po dnevu</span><span class="lang-en">~€7–12 / hour or per-day deal</span></span><span class="tag"><span class="lang-sl">na prostem, a mirno</span><span class="lang-en">outdoors, but calm</span></span></div>
+<ol class="steps">
+<li><span class="lang-sl">Poišči konjeniške klube in ranče v svoji regiji in jih pokliči ali jim piši.</span><span class="lang-en">Look up riding clubs and ranches in your region and call or message them.</span></li>
+<li><span class="lang-sl">V konjeniških FB skupinah ponudi »oskrbo konja med dopustom«.</span><span class="lang-en">In horse Facebook groups, offer "horse care while you're on holiday".</span></li>
+<li><span class="lang-sl">Možnost kasneje: ure jahanja za odrasle začetnike.</span><span class="lang-en">Later option: riding lessons for adult beginners.</span></li>
+</ol>
+<label class="pick"><input type="checkbox"> <span class="lang-sl">To me zanima</span><span class="lang-en">I'm interested</span></label>
+</div>
+
+<!-- MIRNO DELO -->
+<h2 class="section-title">&#129529; <span class="lang-sl">Mirno delo, sama zase</span><span class="lang-en">Calm work, on your own</span></h2>
+<div class="section-sub"><span class="lang-sl">Jasna navodila, brez strank, dober občutek, ko je stvar narejena.</span><span class="lang-en">Clear instructions, no customers, a good feeling when it's done.</span></div>
+
+<div class="card" data-id="cleaning">
+<div class="card-head"><div class="card-icon">&#10024;</div><div>
+<h3><span class="lang-sl">Priprava apartmajev (Airbnb / Booking)</span><span class="lang-en">Holiday apartment turnovers (Airbnb / Booking)</span></h3>
+<div class="fit">&#9733;&#9733;&#9733;&#9733;</div></div></div>
+<p><span class="lang-sl">Med odhodom in prihodom gostov apartma očistiš in urediš po seznamu. Gostov skoraj nikoli ne srečaš. Natančnost se tukaj zelo ceni.</span><span class="lang-en">Between guests you clean and prepare the apartment from a checklist. You almost never meet the guests. Attention to detail is highly valued here.</span></p>
+<div class="meta"><span class="tag money"><span class="lang-sl">~15–30 € / apartma</span><span class="lang-en">~€15–30 / apartment</span></span><span class="tag"><span class="lang-sl">največ v Ljubljani in na Obali</span><span class="lang-en">most in Ljubljana &amp; on the Coast</span></span></div>
+<ol class="steps">
+<li><span class="lang-sl">Na Bolha.com poišči »čiščenje apartmajev« ali objavi svoj oglas.</span><span class="lang-en">Search "čiščenje apartmajev" on Bolha.com or post your own ad.</span></li>
+<li><span class="lang-sl">Piši agencijam, ki upravljajo apartmaje v tvojem mestu.</span><span class="lang-en">Message agencies that manage apartments in your town.</span></li>
+</ol>
+<label class="pick"><input type="checkbox"> <span class="lang-sl">To me zanima</span><span class="lang-en">I'm interested</span></label>
+</div>
+
+<div class="card" data-id="production">
+<div class="card-head"><div class="card-icon">&#9881;&#65039;</div><div>
+<h3><span class="lang-sl">Vikend izmene v proizvodnji / skladišču</span><span class="lang-en">Weekend shifts in production / warehouse</span></h3>
+<div class="fit">&#9733;&#9733;&#9733;&#9733;</div></div></div>
+<p><span class="lang-sl">Pakiranje, sortiranje, kontrola kakovosti — delo po navodilih, v ekipi, brez strank. Agencije pogosto iščejo ljudi samo za sobote ali posamezne izmene.</span><span class="lang-en">Packing, sorting, quality checks — work by instructions, in a team, no customers. Agencies often look for people just for Saturdays or single shifts.</span></p>
+<div class="meta"><span class="tag money"><span class="lang-sl">redna urna postavka + dodatki za vikend</span><span class="lang-en">regular hourly pay + weekend bonus</span></span><span class="tag"><span class="lang-sl">prek agencije</span><span class="lang-en">through an agency</span></span></div>
+<ol class="steps">
+<li><span class="lang-sl">Prijavi se pri agencijah za zaposlovanje (npr. Adecco, Trenkwalder, ManpowerGroup) in povej, da iščeš samo vikend delo.</span><span class="lang-en">Sign up with staffing agencies (e.g. Adecco, Trenkwalder, ManpowerGroup) and say you only want weekend work.</span></li>
+<li><span class="lang-sl">Pazi, da skupaj s službo ne delaš preveč ur — počitek je pomemben.</span><span class="lang-en">Make sure you don't work too many hours together with your job — rest matters.</span></li>
+</ol>
+<label class="pick"><input type="checkbox"> <span class="lang-sl">To me zanima</span><span class="lang-en">I'm interested</span></label>
+</div>
+
+<!-- OD DOMA -->
+<h2 class="section-title">&#128241; <span class="lang-sl">Od doma, s telefonom ali računalnikom</span><span class="lang-en">From home, with phone or computer</span></h2>
+<div class="section-sub"><span class="lang-sl">Iskreno: tukaj je manj denarja, a lahko delaš v pižami z mucko v naročju. &#128049;</span><span class="lang-en">Honestly: less money here, but you can work in pyjamas with your kitty on your lap. &#128049;</span></div>
+
+<div class="card" data-id="surveys">
+<div class="card-head"><div class="card-icon">&#128203;</div><div>
+<h3><span class="lang-sl">Univerzitetne ankete (Prolific)</span><span class="lang-en">University research surveys (Prolific)</span></h3>
+<div class="fit">&#9733;&#9733;&#9733;</div></div></div>
+<p><span class="lang-sl">Resna platforma, kjer univerze plačajo za izpolnjevanje raziskovalnih anket. Potrebna je angleščina. Ni veliko, a je pošteno in brez ljudi.</span><span class="lang-en">A legit platform where universities pay you to complete research studies. English needed. Not much money, but fair and no people involved.</span></p>
+<div class="meta"><span class="tag money"><span class="lang-sl">nekaj € na uro, izplačilo prek PayPala</span><span class="lang-en">a few € per hour, paid via PayPal</span></span></div>
+<label class="pick"><input type="checkbox"> <span class="lang-sl">To me zanima</span><span class="lang-en">I'm interested</span></label>
+</div>
+
+<div class="card" data-id="crafts">
+<div class="card-head"><div class="card-icon">&#127912;</div><div>
+<h3><span class="lang-sl">Ročno pobarvane mandale &amp; portreti živali</span><span class="lang-en">Hand-coloured mandalas &amp; pet portraits</span></h3>
+<div class="fit">&#9733;&#9733;&#9733;</div></div></div>
+<p><span class="lang-sl">Tvoje barvanje kot darilo: uokvirjene mandale, ali pa po fotografiji narisan obris ljubljenčka, ki ga ti lepo pobarvaš. Lastniki živali radi plačajo za kaj takega. Začetek je počasen, a je iz srca.</span><span class="lang-en">Your colouring as a gift: framed mandalas, or an outline traced from a photo of someone's pet that you colour in beautifully. Pet owners love paying for that. It starts slowly, but it comes from the heart.</span></p>
+<div class="meta"><span class="tag money"><span class="lang-sl">~15–40 € / kos</span><span class="lang-en">~€15–40 / piece</span></span><span class="tag">Etsy · Vinted · Instagram</span></div>
+<label class="pick"><input type="checkbox"> <span class="lang-sl">To me zanima</span><span class="lang-en">I'm interested</span></label>
+</div>
+
+<div class="card" data-id="sell">
+<div class="card-head"><div class="card-icon">&#128230;</div><div>
+<h3><span class="lang-sl">Prodaja stvari, ki jih ne rabiš več</span><span class="lang-en">Selling things you no longer need</span></h3>
+<div class="fit">&#9733;&#9733;&#9733;</div></div></div>
+<p><span class="lang-sl">Hiter enkraten denar: oblačila na Vinted, ostalo na Bolha.com. Ne kot služba, ampak kot hitra blazina.</span><span class="lang-en">Quick one-off money: clothes on Vinted, everything else on Bolha.com. Not a job, but a quick cushion.</span></p>
+<label class="pick"><input type="checkbox"> <span class="lang-sl">To me zanima</span><span class="lang-en">I'm interested</span></label>
+</div>
+
+<div class="box info">
+<h4>&#128196; <span class="lang-sl">Da bo vse čisto in varno (Slovenija)</span><span class="lang-en">Keeping it clean and safe (Slovenia)</span></h4>
+<ul>
+<li><span class="lang-sl">Za manjše občasno delo obstajajo preproste oblike: <b>osebno dopolnilno delo</b>, <b>podjemna pogodba</b> ali <b>popoldanski s.p.</b></span><span class="lang-en">For small side work there are simple options: <b>osebno dopolnilno delo</b> (supplementary personal work), a <b>podjemna pogodba</b> (service contract) or an <b>after-hours sole proprietorship (popoldanski s.p.)</b>.</span></li>
+<li><span class="lang-sl">Katera je prava, ti brezplačno povedo na FURS ali na SPOT točki. Vprašaj, preden začneš več zaslužiti.</span><span class="lang-en">FURS or an SPOT point can tell you for free which one is right. Ask before you start earning more.</span></li>
+<li><span class="lang-sl">Preveri pogodbo pri trenutni službi, ali moraš delodajalcu sporočiti dodatno delo.</span><span class="lang-en">Check your current work contract to see whether you need to tell your employer about side work.</span></li>
+</ul>
+</div>
+
+<div class="box warn">
+<h4>&#9888;&#65039; <span class="lang-sl">Pazi se prevar</span><span class="lang-en">Watch out for scams</span></h4>
+<ul>
+<li><span class="lang-sl">Nikoli ne plačaj, da bi dobila »službo« ali »tečaj za zaslužek«.</span><span class="lang-en">Never pay to get a "job" or a "course to earn money".</span></li>
+<li><span class="lang-sl">Nikomur ne pošlji slike osebne izkaznice prek sporočil.</span><span class="lang-en">Never send a photo of your ID card through messages.</span></li>
+<li><span class="lang-sl">»Lahek denar hitro« skoraj vedno pomeni, da nekdo služi na tebi.</span><span class="lang-en">"Easy money fast" almost always means someone is making money off you.</span></li>
+</ul>
+</div>
+
+<div class="card notes-card">
+<div class="card-head"><div class="card-icon">&#128173;</div><div>
+<h3><span class="lang-sl">Tvoje misli</span><span class="lang-en">Your thoughts</span></h3></div></div>
+<p><span class="lang-sl">Koliko ur na teden bi lahko dodatno delala? Imaš še kakšno svojo idejo?</span><span class="lang-en">How many extra hours per week could you work? Do you have an idea of your own?</span></p>
+<textarea id="notes"></textarea>
+</div>
+
+<div class="box love">
+<h4>&#128150;</h4>
+<span class="lang-sl">Ni ti treba izbrati vsega. En ali dva majhna koraka sta čisto dovolj. Tvoj čas in tvoja energija sta vredna veliko.</span><span class="lang-en">You don't have to pick everything. One or two small steps are plenty. Your time and your energy are worth a lot.</span>
+</div>
+
+</div>
+
+<div class="button-area">
+<button type="button" class="btn btn-main" onclick="sendPicks()"><span class="lang-sl">&#128228; Pošlji izbiro</span><span class="lang-en">&#128228; Send my picks</span></button>
+<button type="button" class="btn btn-sec" onclick="copyPicks()"><span class="lang-sl">&#128203; Kopiraj</span><span class="lang-en">&#128203; Copy</span></button>
+</div>
+
+<script>
+var STORAGE_KEY='ninaSideIncome';
+var LANG_KEY='ninaQuizLang';
+
+function getLang(){return document.body.className==='en'?'en':'sl';}
+
+function setLang(lang){
+document.body.className=lang;
+document.getElementById('btn-sl').className=lang==='sl'?'active':'';
+document.getElementById('btn-en').className=lang==='en'?'active':'';
+document.getElementById('notes').placeholder=lang==='sl'?'Piši kar po svoje...':'Just write freely...';
+try{localStorage.setItem(LANG_KEY,lang);}catch(e){}
+}
+
+function cards(){return document.querySelectorAll('.card[data-id]');}
+
+function save(){
+var data={picks:{},notes:document.getElementById('notes').value};
+var cs=cards();
+for(var i=0;i<cs.length;i++){
+var cb=cs[i].querySelector('input');
+data.picks[cs[i].getAttribute('data-id')]=cb.checked;
+cs[i].className=cb.checked?'card picked':'card';
+}
+try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}catch(e){}
+}
+
+function load(){
+try{
+var raw=localStorage.getItem(STORAGE_KEY);
+if(!raw)return;
+var data=JSON.parse(raw);
+var cs=cards();
+for(var i=0;i<cs.length;i++){
+var id=cs[i].getAttribute('data-id');
+var cb=cs[i].querySelector('input');
+cb.checked=!!data.picks[id];
+cs[i].className=cb.checked?'card picked':'card';
+}
+document.getElementById('notes').value=data.notes||'';
+}catch(e){}
+}
+
+function buildText(){
+var lang=getLang();
+var t=(lang==='sl'?'NINA — DODATNI ZASLUŽEK\nIzbrala sem:\n':'NINA — EXTRA INCOME\nMy picks:\n');
+var cs=cards();
+var any=false;
+for(var i=0;i<cs.length;i++){
+if(cs[i].querySelector('input').checked){
+any=true;
+t+='  ✔ '+cs[i].querySelector('h3 .lang-'+lang).textContent+'\n';
+}
+}
+if(!any)t+=(lang==='sl'?'  (še nič)\n':'  (nothing yet)\n');
+var n=document.getElementById('notes').value.trim();
+if(n)t+='\n'+(lang==='sl'?'Moje misli:\n':'My thoughts:\n')+n+'\n';
+return t;
+}
+
+function showToast(msg){
+var t=document.getElementById('toast');
+t.textContent=msg;
+t.className='toast show';
+setTimeout(function(){t.className='toast';},3000);
+}
+
+function sendPicks(){
+var text=buildText();
+if(navigator.share){
+navigator.share({title:'Nina',text:text}).catch(function(e){if(e.name!=='AbortError')copyPicks();});
+}else{copyPicks();}
+}
+
+function copyPicks(){
+var text=buildText();
+var ok=getLang()==='sl'?'Kopirano! Prilepi v WhatsApp.':'Copied! Paste in WhatsApp.';
+if(navigator.clipboard&&navigator.clipboard.writeText){
+navigator.clipboard.writeText(text).then(function(){showToast(ok);});
+return;
+}
+var ta=document.createElement('textarea');
+ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';
+document.body.appendChild(ta);ta.select();
+try{document.execCommand('copy');showToast(ok);}catch(e){}
+document.body.removeChild(ta);
+}
+
+(function init(){
+var lang='sl';
+try{lang=localStorage.getItem(LANG_KEY)||'sl';}catch(e){}
+var m=location.search.match(/lang=(sl|en)/);if(m)lang=m[1];
+setLang(lang);
+load();
+var cbs=document.querySelectorAll('.pick input');
+for(var i=0;i<cbs.length;i++)cbs[i].addEventListener('change',save);
+document.getElementById('notes').addEventListener('input',save);
+})();
+</script>
+</body>
+</html>

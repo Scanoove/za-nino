@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<title>Nina — Konkretne ponudbe</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#0d0b12;--card:#181320;--border:#2a2236;--ink:#e8e1ef;--soft:#b3a6c4;--muted:#75688a;--accent:#c77dff;--accent2:#ff8fcf;--deep:#8a4fd6;--gold:#e8b86f;--green:#8fe3b0;--blue:#9fb6ff;--top:env(safe-area-inset-top,0px);--bot:env(safe-area-inset-bottom,0px)}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:radial-gradient(900px 500px at 80% -10%,rgba(138,79,214,.18),transparent 60%),var(--bg);color:var(--ink);line-height:1.6;min-height:100dvh}
+body.sl .lang-en{display:none!important}
+body.en .lang-sl{display:none!important}
+a{color:var(--accent2);text-decoration:none;word-break:break-word}
+.lang-switch{position:fixed;top:calc(10px + var(--top));right:14px;z-index:300;display:flex;background:rgba(20,17,28,.92);border:1px solid var(--border);border-radius:999px;padding:4px}
+.lang-switch button{border:none;background:transparent;color:var(--muted);font-size:.82rem;font-weight:600;padding:8px 16px;border-radius:999px}
+.lang-switch button.active{background:linear-gradient(135deg,var(--deep),var(--accent));color:#fff}
+.hero{text-align:center;padding:calc(70px + var(--top)) 20px 20px}
+.hero .moon{font-size:2rem;display:block;margin-bottom:8px}
+.hero h1{font-size:1.9rem;font-weight:700;color:#f6eefc;margin-bottom:12px;line-height:1.2}
+.hero p{font-size:.98rem;color:var(--soft);max-width:560px;margin:0 auto}
+.hero .date{margin-top:12px;font-size:.8rem;color:var(--muted);font-style:italic}
+.nav{position:sticky;top:0;z-index:100;background:rgba(13,11,18,.94);border-bottom:1px solid #1d1729;padding:10px 12px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+.nav a{display:inline-block;font-size:.8rem;color:var(--soft);background:#1a1426;border:1px solid var(--border);border-radius:999px;padding:6px 12px;margin-right:6px}
+.container{max-width:720px;margin:0 auto;padding:6px 16px calc(40px + var(--bot))}
+.section-title{font-size:1.25rem;color:#f0e8f8;margin:34px 0 6px;padding-bottom:10px;border-bottom:1px solid #221b30;scroll-margin-top:60px}
+.section-sub{font-size:.86rem;color:var(--muted);font-style:italic;margin:8px 0 14px}
+.card{background:linear-gradient(160deg,var(--card),#140f1d);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:12px}
+.card h3{font-size:1rem;color:#f6eefc;line-height:1.35;margin-bottom:6px}
+.card p{font-size:.9rem;color:var(--soft);margin-bottom:8px}
+.card ul{margin:4px 0 8px 18px;font-size:.88rem;color:var(--soft)}
+.card li{margin-bottom:3px}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.tag{font-size:.74rem;padding:3px 9px;border-radius:999px;background:rgba(199,125,255,.12);border:1px solid rgba(199,125,255,.25);color:var(--soft)}
+.tag.money{background:rgba(143,227,176,.10);border-color:rgba(143,227,176,.3);color:var(--green)}
+.tag.open{background:rgba(232,184,111,.12);border-color:rgba(232,184,111,.35);color:var(--gold)}
+.tag.example{background:rgba(159,182,255,.10);border-color:rgba(159,182,255,.3);color:var(--blue)}
+.contact{font-size:.86rem;background:#0f0c16;border:1px solid #241d33;border-radius:10px;padding:8px 10px;margin-top:6px;color:var(--soft)}
+.contact b{color:var(--ink)}
+.links{margin-top:8px;font-size:.84rem}
+.links a{display:inline-block;margin:2px 10px 2px 0}
+.box{border-radius:16px;padding:16px;margin:14px 0;font-size:.9rem}
+.box h4{margin-bottom:8px;font-size:1rem}
+.box ul,.box ol{margin-left:18px}
+.box li{margin-bottom:6px}
+.box.info{background:#161a26;border:1px solid #2b3552;color:#b9c4e0}
+.box.info h4{color:var(--blue)}
+.box.warn{background:#23151c;border:1px solid #4d2a3a;color:#e6bccb}
+.box.warn h4{color:var(--accent2)}
+.box.good{background:#12201a;border:1px solid #2a4a3a;color:#bfe6cf}
+.box.good h4{color:var(--green)}
+.box.love{background:linear-gradient(160deg,#1e1530,#140f1d);border:1px solid #3a2a52;color:var(--soft);text-align:center}
+.box.love h4{color:var(--accent2)}
+table{width:100%;border-collapse:collapse;font-size:.84rem;margin-top:6px}
+td{padding:6px 4px;border-bottom:1px solid #241d33;color:var(--soft);vertical-align:top}
+td:last-child{text-align:right;color:var(--green);white-space:nowrap}
+@media print{
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@page{margin:10mm;background:#0d0b12}
+html,body{background:#0d0b12}
+.lang-switch,.nav{display:none!important}
+.hero{padding-top:10px}
+.container{padding-bottom:0}
+.card,.box,tr{break-inside:avoid;page-break-inside:avoid}
+.section-title{break-after:avoid;page-break-after:avoid}
+}
+</style>
+</head>
+<body class="sl">
+
+<div class="lang-switch">
+<button type="button" id="btn-sl" class="active" onclick="setLang('sl')">SL</button>
+<button type="button" id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+
+<div class="hero">
+<span class="moon">&#128205;</span>
+<h1><span class="lang-sl">Resnične ponudbe. Resnične številke.</span><span class="lang-en">Real offers. Real numbers.</span></h1>
+<p><span class="lang-sl">Vse spodaj je poiskano na spletu — z imeni podjetij, telefonskimi številkami in roki. Ne gre za »lepe ideje«, ampak za dokaz, da delo za tvoj profil obstaja v vsaki regiji.</span><span class="lang-en">Everything below was looked up online — with company names, phone numbers and deadlines. Not "nice ideas", but proof that work for your profile exists in every region.</span></p>
+<div class="date"><span class="lang-sl">Stanje: 29. 9. 2026. Oglasi hitro potečejo — tudi zaprti oglasi pa kažejo, kdo redno zaposluje.</span><span class="lang-en">As of 29 Sep 2026. Ads expire quickly — but even closed ads show who hires regularly.</span></div>
+</div>
+
+<div class="nav">
+<a href="#zakaj">&#128161; <span class="lang-sl">Zakaj ne dobiš službe</span><span class="lang-en">Why no job yet</span></a>
+<a href="#portali">&#128269; <span class="lang-sl">Portali</span><span class="lang-en">Portals</span></a>
+<a href="#zivali">&#128054; <span class="lang-sl">Živali</span><span class="lang-en">Animals</span></a>
+<a href="#lj">Ljubljana</a>
+<a href="#gor">Gorenjska</a>
+<a href="#stajer">Štajerska</a>
+<a href="#obala">Obala</a>
+<a href="#vsepovsod">&#127758; <span class="lang-sl">Povsod</span><span class="lang-en">Everywhere</span></a>
+<a href="#kredit">&#127968; <span class="lang-sl">Kredit</span><span class="lang-en">Mortgage</span></a>
+</div>
+
+<div class="container">
+
+<!-- ZAKAJ -->
+<h2 class="section-title" id="zakaj">&#128161; <span class="lang-sl">Zakaj te ne vzamejo — in kaj res pomaga</span><span class="lang-en">Why you're not getting hired — and what actually helps</span></h2>
+<div class="section-sub"><span class="lang-sl">Ni stvar tebe. Online prijave na velike oglase so loterija. Te poti delujejo bolje:</span><span class="lang-en">It's not about you. Online applications to big ads are a lottery. These routes work better:</span></div>
+
+<div class="box good">
+<h4>1. <span class="lang-sl">Kadrovske agencije namesto direktnih prijav</span><span class="lang-en">Staffing agencies instead of direct applications</span></h4>
+<span class="lang-sl">Agencije morajo zapolniti mesta in izrecno pišejo, da vzamejo ljudi <b>brez izkušenj</b>. Npr. Trenkwalder v Žalcu: »Nimaš izkušenj? Brez skrbi!« in »možnost zaposlitve kandidatom, ki iščejo prvo zaposlitev«. Pokliči svetovalko po telefonu — to je veliko bolj učinkovito kot e-pošta.</span><span class="lang-en">Agencies need to fill positions and explicitly say they take people <b>without experience</b>. E.g. Trenkwalder in Žalec: "No experience? No worries!" and "open to candidates looking for their first job". Call the recruiter by phone — much more effective than email.</span>
+</div>
+
+<div class="box good">
+<h4>2. <span class="lang-sl">Brezplačna pomoč pri CV-ju in vaja za razgovor (Zavod)</span><span class="lang-en">Free CV help and interview practice (Employment Service)</span></h4>
+<span class="lang-sl">Zavod RS za zaposlovanje ima <b>karierna središča</b> v Ljubljani, Mariboru, Celju, Kranju, Kopru, Novi Gorici, Novem mestu, Murski Soboti, Brežicah, Ptuju, Trbovljah in Velenju. Tam ti pomagajo pri CV-ju in lahko <b>vadiš zaposlitveni razgovor</b>. Vse je brezplačno. V evidenco <b>iskalcev zaposlitve</b> se lahko prijaviš tudi, če si zaposlena — potem ti pošiljajo ustrezne oglase.</span><span class="lang-en">The Slovenian Employment Service has <b>career centres</b> in Ljubljana, Maribor, Celje, Kranj, Koper, Nova Gorica, Novo mesto, Murska Sobota, Brežice, Ptuj, Trbovlje and Velenje. They help with your CV and you can <b>practise job interviews</b>. Everything is free. You can register as a <b>job seeker</b> even while employed — then they send you matching ads.</span>
+<div class="links"><a href="https://www.ess.gov.si/iskalci-zaposlitve/iskanje-zaposlitve/karierna-sredisca/" target="_blank">&#8599; Karierna središča</a><a href="https://www.ess.gov.si/iskalci-zaposlitve/koraki-ob-izgubi-zaposlitve/prijava-v-evidenco/" target="_blank">&#8599; <span class="lang-sl">Prijava v evidenco</span><span class="lang-en">Registration</span></a></div>
+<div class="contact"><span class="lang-sl">Brezplačna številka Zavoda:</span><span class="lang-en">Free hotline:</span> <b>080 20 55</b></div>
+</div>
+
+<div class="box good">
+<h4>3. <span class="lang-sl">Pri živalih: pokliči, ne čakaj oglasa</span><span class="lang-en">With animals: call, don't wait for an ad</span></h4>
+<span class="lang-sl">Konjušnice, pasji hoteli in zavetišča so majhni — pogosto sploh ne oglašujejo. Pokliči in ponudi <b>poskusni dan</b>. Tvoje izkušnje trenerke jahanja so tam veliko vredne.</span><span class="lang-en">Stables, dog hotels and shelters are small — they often don't even advertise. Call and offer a <b>trial day</b>. Your riding-trainer experience is worth a lot there.</span>
+</div>
+
+<div class="box good">
+<h4>4. <span class="lang-sl">Certifikat, ki odpre vrata: oskrbnik hišnih živali</span><span class="lang-en">A certificate that opens doors: pet caretaker</span></h4>
+<span class="lang-sl">Pasji hoteli in trgovine z živalmi <b>po zakonu</b> potrebujejo osebje z opravljenim usposabljanjem za oskrbnika hišnih živali. Tečaj stane <b>99 €</b>, poteka v Šentjurju ali <b>online</b>. S tem potrdilom si v prednosti pred drugimi kandidati.</span><span class="lang-en">Dog hotels and pet shops are <b>legally required</b> to have staff with pet-caretaker training. The course costs <b>€99</b> and runs in Šentjur or <b>online</b>. With this certificate you're ahead of other applicants.</span>
+<div class="links"><a href="https://razpis.si/usposabljanje-za-oskrbnike-hisnih-zivali/" target="_blank">&#8599; razpis.si — <span class="lang-sl">naslednji termin</span><span class="lang-en">next date</span></a></div>
+<div class="contact"><b>041 798 731</b> · info@razpis.si</div>
+</div>
+
+<!-- PORTALI -->
+<h2 class="section-title" id="portali">&#128269; <span class="lang-sl">Kje iskati (vse regije)</span><span class="lang-en">Where to search (all regions)</span></h2>
+<div class="section-sub"><span class="lang-sl">Nastavi si obvestila po e-pošti — potem ti ni treba vsak dan preverjati.</span><span class="lang-en">Set up email alerts — then you don't have to check every day.</span></div>
+
+<div class="card">
+<h3>&#127963;&#65039; <span class="lang-sl">Državni portal</span><span class="lang-en">Government portal</span></h3>
+<p><span class="lang-sl">Zavod RS za zaposlovanje — vsi uradno prijavljeni oglasi, tudi sezonska dela.</span><span class="lang-en">Slovenian Employment Service — all officially registered ads, including seasonal work.</span></p>
+<div class="links"><a href="https://www.ess.gov.si/iskalci-zaposlitve/" target="_blank">&#8599; ess.gov.si</a></div>
+</div>
+
+<div class="card">
+<h3>&#128188; <span class="lang-sl">Zasebni portali</span><span class="lang-en">Private portals</span></h3>
+<ul>
+<li><a href="https://www.mojedelo.com/iskanje-zaposlitve" target="_blank">MojeDelo.com</a> — <span class="lang-sl">največji portal, tudi oglasi za čiščenje apartmajev in veterino</span><span class="lang-en">largest portal, incl. apartment cleaning and vet jobs</span></li>
+<li><a href="https://www.kariera.si/sl/delovna-mesta" target="_blank">Kariera.si</a> — <span class="lang-sl">veliko »lažjih proizvodnih del«, pogosto s prostimi vikendi</span><span class="lang-en">lots of "light production work", often with weekends off</span></li>
+<li><a href="https://www.optius.com/" target="_blank">Optius.com</a></li>
+<li><a href="https://www.bolha.com/" target="_blank">Bolha.com</a> — <span class="lang-sl">rubrika zaposlitve + tu lahko objaviš svoj oglas za varstvo živali</span><span class="lang-en">jobs section + here you can post your own pet-sitting ad</span></li>
+</ul>
+</div>
+
+<div class="card">
+<h3>&#129309; <span class="lang-sl">Kadrovske agencije</span><span class="lang-en">Staffing agencies</span></h3>
+<ul>
+<li><a href="https://si.trenkwalder.com/" target="_blank">Trenkwalder</a> — <span class="lang-sl">poslovalnica Celje: Mariborska 88</span><span class="lang-en">Celje branch: Mariborska 88</span></li>
+<li><a href="https://www.manpower.si/sl/delovna-mesta" target="_blank">Manpower Slovenija</a></li>
+<li>Adecco Slovenija</li>
+<li><a href="https://www.kariera.si/sl/delovna-mesta" target="_blank">Kariera d.o.o.</a> — <b>01 300 31 00</b></li>
+</ul>
+</div>
+
+<!-- ZIVALI -->
+<h2 class="section-title" id="zivali">&#128054; <span class="lang-sl">Varstvo živali — trg obstaja</span><span class="lang-en">Pet sitting — the market is real</span></h2>
+<div class="section-sub"><span class="lang-sl">To so resnični ceniki ljudi, ki to že delajo. Toliko lahko zaračunaš tudi ti.</span><span class="lang-en">These are real price lists of people already doing this. You can charge the same.</span></div>
+
+<div class="card">
+<h3><span class="lang-sl">Kaj zaračunavajo drugi (Ljubljana, 2026)</span><span class="lang-en">What others charge (Ljubljana, 2026)</span></h3>
+<table>
+<tr><td><a href="https://www.mojlordek.si/" target="_blank">Moj Lordek</a> — <span class="lang-sl">30-min sprehod</span><span class="lang-en">30-min walk</span></td><td>8 €</td></tr>
+<tr><td><a href="https://lomospela.wixsite.com/isak/copy-of-happy-ku%C5%BEki" target="_blank">isak</a> — <span class="lang-sl">sprehod / varstvo do 7 ur</span><span class="lang-en">walk / care up to 7 h</span></td><td>8 € / 15 €</td></tr>
+<tr><td><a href="https://www.sprehajanjepsov.si/" target="_blank">sprehajanjepsov.si</a> — <span class="lang-sl">sprehod na domu</span><span class="lang-en">walk from home</span></td><td>20 €</td></tr>
+<tr><td><a href="https://www.hors.si/cenik" target="_blank">Hors</a> — <span class="lang-sl">dnevno varstvo / z nočitvijo</span><span class="lang-en">day care / overnight</span></td><td>25 € / 30 €</td></tr>
+<tr><td><a href="https://www.pasjivrtec.si/" target="_blank">Pasji vrtec</a> — <span class="lang-sl">vrtec / hotel</span><span class="lang-en">daycare / hotel</span></td><td><span class="lang-sl">od</span><span class="lang-en">from</span> 10 € / 20 €</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3><span class="lang-sl">Primer oglasa, ki ga lahko posnemaš</span><span class="lang-en">An example ad you can copy</span></h3>
+<p><span class="lang-sl">Na Bolhi nekdo iz Radovljice ponuja: »V času vaše odsotnosti nudim varstvo, hranjenje in sprehajanje vaših ljubljenčkov« — z naštetimi kraji. Tako preprosto je. Oglas lahko objaviš brezplačno za svojo okolico.</span><span class="lang-en">On Bolha someone from Radovljica offers: "While you're away I provide care, feeding and walks for your pets" — listing nearby towns. It's that simple. You can post a free ad for your area.</span></p>
+<div class="links"><a href="https://www.bolha.com/zivali-ostalo/varstvo-in-sprehajanje-zivali-oglas-16070732" target="_blank">&#8599; <span class="lang-sl">Poglej oglas</span><span class="lang-en">See the ad</span></a></div>
+</div>
+
+<div class="card">
+<h3>&#128241; Best Buddy — <span class="lang-sl">slovenska aplikacija za varuhe živali</span><span class="lang-en">Slovenian pet-sitter app</span></h3>
+<p><span class="lang-sl">Nova slovenska aplikacija, ki povezuje lastnike z varuhi in sprehajalci. Ker je nova, je tam verjetno še malo konkurence.</span><span class="lang-en">A new Slovenian app connecting owners with sitters and walkers. Because it's new, there's probably little competition yet.</span></p>
+<div class="links"><a href="https://bestbuddy.si/o-nas" target="_blank">&#8599; bestbuddy.si</a></div>
+</div>
+
+<div class="box info">
+<h4>&#9989; <span class="lang-sl">Legalno in preprosto: osebno dopolnilno delo (ODD)</span><span class="lang-en">Legal and simple: supplementary personal work (ODD)</span></h4>
+<ul>
+<li><span class="lang-sl"><b>»Občasna pomoč pri oskrbi hišnih živali na domu lastnika«</b> je uradno na seznamu (šifra A7), prav tako čiščenje stanovanj (A1).</span><span class="lang-en"><b>"Occasional pet care at the owner's home"</b> is officially on the list (code A7), as is home cleaning (A1).</span></li>
+<li><span class="lang-sl">Enkrat se priglasiš pri <b>AJPES</b>. Vrednotnico (<b>13,73 €</b> na mesec) kupi <b>stranka</b>, ne ti.</span><span class="lang-en">You register once with <b>AJPES</b>. The voucher (<b>€13.73</b> per month) is bought by the <b>client</b>, not you.</span></li>
+<li><span class="lang-sl">Meja zaslužka: približno <b>4.700 € na pol leta</b>. Dvakrat na leto poročaš prek eDavkov.</span><span class="lang-en">Earnings limit: roughly <b>€4,700 per half-year</b>. You report twice a year via eDavki.</span></li>
+<li><span class="lang-sl">Pozor: skupina A velja samo za zasebnike, ne za podjetja.</span><span class="lang-en">Note: group A only applies to private individuals, not companies.</span></li>
+</ul>
+<div class="links"><a href="https://e-uprava.gov.si/podrocja/delo-upokojitev/delo/osebno-dopolnilno-delo.html" target="_blank">&#8599; eUprava ODD</a><a href="https://www.ajpes.si/registri/drugi_registri/osebno_dopolnilno_delo" target="_blank">&#8599; AJPES</a><a href="https://www.fu.gov.si/zivljenjski_dogodki_prebivalci/opravljam_osebno_dopolnilno_delo/" target="_blank">&#8599; FURS</a></div>
+</div>
+
+<!-- LJUBLJANA -->
+<h2 class="section-title" id="lj">&#127983; <span class="lang-sl">Ljubljana in okolica</span><span class="lang-en">Ljubljana area</span></h2>
+
+<div class="card">
+<div class="meta"><span class="tag example"><span class="lang-sl">objavljeno april 2026 — pokliči in vprašaj</span><span class="lang-en">posted April 2026 — call and ask</span></span><span class="tag">&#128052;</span></div>
+<h3><span class="lang-sl">Hlevar/ka — Posestvo Jurečič / Konjeništvo Peterlin</span><span class="lang-en">Stable hand — Posestvo Jurečič / Konjeništvo Peterlin</span></h3>
+<p><span class="lang-sl">Oskrba ~25 konj. Delo vedno v paru. Približno 6:00/7:00–13:00/14:00. <b>Koliko dni na teden delaš, izbiraš sama.</b> Dostopno z mestnim avtobusom 19B.</span><span class="lang-en">Caring for ~25 horses. Always working in pairs. Roughly 6/7am–1/2pm. <b>You choose how many days a week.</b> Reachable by city bus 19B.</span></p>
+<div class="contact"><span class="lang-sl">Simon (hlevarjenje):</span><span class="lang-en">Simon (stable work):</span> <b>041 266 797</b> · konjenistvo.peterlin@gmail.com · Lipe 15, Ljubljana</div>
+<div class="links"><a href="https://www.konjenistvo-peterlin.si/2026/04/14/iscemo-hlevarja/" target="_blank">&#8599; <span class="lang-sl">Oglas</span><span class="lang-en">Ad</span></a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag example"><span class="lang-sl">objavljeno 28. 8. 2026</span><span class="lang-en">posted 28 Aug 2026</span></span><span class="tag money"><span class="lang-sl">od 1.500 € neto</span><span class="lang-en">from €1,500 net</span></span></div>
+<h3><span class="lang-sl">Čiščenje apartmajev — CAPINVESTMENT INT</span><span class="lang-en">Apartment cleaning — CAPINVESTMENT INT</span></h3>
+<p><span class="lang-sl">Ekipa štirih punc, <b>delovni čas po dogovoru</b>, primerno tudi za prilagojen urnik. Iščejo natančno in zanesljivo osebo. Za nedoločen čas.</span><span class="lang-en">A team of four women, <b>hours by arrangement</b>, suitable for flexible schedules. Looking for someone precise and reliable. Permanent contract.</span></p>
+<div class="links"><a href="https://www.mojedelo.com/oglas/cistilka-sobarica-mz-ljubljana/407a1075-4271-46a9-9696-faa970ec6a21" target="_blank">&#8599; MojeDelo.com</a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag example"><span class="lang-sl">redni zaposlovalec</span><span class="lang-en">hires regularly</span></span></div>
+<h3><span class="lang-sl">Pakiranje spletnih naročil — DTM Natura (prek DEKRA)</span><span class="lang-en">Packing online orders — DTM Natura (via DEKRA)</span></h3>
+<p><span class="lang-sl">Pakiranje in preverjanje naročil, dodatki za sobote. Rok za ta oglas je potekel (7. 9.), a podjetje oglašuje ob vsakem porastu naročil (Black Friday ipd.).</span><span class="lang-en">Packing and checking orders, Saturday bonuses. This ad closed (7 Sep), but they advertise at every peak (Black Friday etc.).</span></p>
+<div class="links"><a href="https://dekra-slovenia.talentlyft.com/jobs/pakiralec-spletnih-narocil-mz-ckOk" target="_blank">&#8599; DEKRA</a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag">&#128052; <span class="lang-sl">referenca</span><span class="lang-en">reference</span></span></div>
+<h3><span class="lang-sl">Prostovoljstvo s konji — PRC Krumperk (Domžale)</span><span class="lang-en">Volunteering with horses — PRC Krumperk (Domžale)</span></h3>
+<p><span class="lang-sl">Neplačano, a odlična sveža referenca za CV, če iščeš delo s konji. Termini ~3–4 ure, tudi ob vikendih. Potreben vozniški izpit.</span><span class="lang-en">Unpaid, but a great fresh reference for your CV if you're looking for horse work. Slots ~3–4 h, weekends too. Driver's licence needed.</span></p>
+<div class="links"><a href="https://domzalec.si/novice/obvestila/iscemo-prostovoljce-za-oskrbo-konj-na-krumperku/" target="_blank">&#8599; domžalec.si</a></div>
+</div>
+
+<!-- GORENJSKA -->
+<h2 class="section-title" id="gor">&#9968;&#65039; Gorenjska</h2>
+
+<div class="card">
+<div class="meta"><span class="tag example"><span class="lang-sl">september 2026</span><span class="lang-en">September 2026</span></span></div>
+<h3><span class="lang-sl">Lažja proizvodna dela v Kranju — Kariera</span><span class="lang-en">Light production work in Kranj — Kariera</span></h3>
+<p><span class="lang-sl">Kariera.si ima stalno več oglasov v Kranju: »delavec v proizvodnji – lažja proizvodna dela«, »skladiščnik – prosti vikendi«, »operater v proizvodnji«. Opis: čista proizvodnja, fizično nezahtevno, brez pritiskov, pomembna natančnost.</span><span class="lang-en">Kariera.si constantly has several Kranj ads: "light production worker", "warehouse – weekends off", "production operator". Described as clean, physically easy, no pressure, precision valued.</span></p>
+<div class="contact"><b>01 300 31 00</b> · zaposlitev@kariera.si</div>
+<div class="links"><a href="https://www.kariera.si/sl/delovna-mesta" target="_blank">&#8599; <span class="lang-sl">Vsi oglasi</span><span class="lang-en">All ads</span></a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag example">Manpower</span></div>
+<h3><span class="lang-sl">Delo v proizvodnji — Kranj / Brnik</span><span class="lang-en">Production work — Kranj / Brnik</span></h3>
+<div class="links"><a href="https://www.manpower.si/sl/delovna-mesta" target="_blank">&#8599; manpower.si</a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag open"><span class="lang-sl">odprto do 26. 10. 2026</span><span class="lang-en">open until 26 Oct 2026</span></span></div>
+<h3><span class="lang-sl">Operaterka pakiranja — Knauf Insulation, Škofja Loka</span><span class="lang-en">Packing operator — Knauf Insulation, Škofja Loka</span></h3>
+<p><span class="lang-sl">Kontrola in sortiranje izdelkov, delo s pakirnim strojem. 4 izmene. Zaželene izkušnje.</span><span class="lang-en">Checking and sorting products, packing machine. 4 shifts. Experience preferred.</span></p>
+<div class="links"><a href="https://knaufinsulationsystemsdivision.teamtailor.com/jobs/8450386-operater-ka-pakiranja-m-z-4-izmensko" target="_blank">&#8599; <span class="lang-sl">Oglas</span><span class="lang-en">Ad</span></a></div>
+</div>
+
+<!-- STAJERSKA -->
+<h2 class="section-title" id="stajer">&#127815; <span class="lang-sl">Štajerska, Savinjska, Podravje</span><span class="lang-en">Styria, Savinja, Podravje</span></h2>
+
+<div class="card">
+<div class="meta"><span class="tag open"><span class="lang-sl">objavljeno 18. 9. 2026</span><span class="lang-en">posted 18 Sep 2026</span></span><span class="tag"><span class="lang-sl">brez izkušenj</span><span class="lang-en">no experience</span></span></div>
+<h3><span class="lang-sl">Proizvodnja (avtomobilska) — Trenkwalder, Žalec</span><span class="lang-en">Automotive production — Trenkwalder, Žalec</span></h3>
+<p><span class="lang-sl">Sestavljanje, pakiranje, kontrola izdelkov. Mentor ob uvajanju, prehrana 7,96 € na dan, prevoz 0,21 €/km. »Nimaš izkušenj? Brez skrbi!«</span><span class="lang-en">Assembly, packing, quality checks. Mentor during onboarding, meal allowance €7.96/day, travel €0.21/km. "No experience? No worries!"</span></p>
+<div class="contact">Kristina Vasiljević: <b>030 210 091</b> · <b>03 42 56 392</b></div>
+<div class="links"><a href="https://si.trenkwalder.com/jobs/a0tbI00000Y1JcxQAF" target="_blank">&#8599; Žalec</a><a href="https://si.trenkwalder.com/en-SI/jobs/a0t6N000009OE0IQAW" target="_blank">&#8599; <span class="lang-sl">okolica Celja</span><span class="lang-en">Celje area</span></a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag open"><span class="lang-sl">sezona do konca oktobra 2026</span><span class="lang-en">season until end of Oct 2026</span></span><span class="tag money"><span class="lang-sl">min. 8,52 € bruto/uro</span><span class="lang-en">min. €8.52 gross/h</span></span></div>
+<h3><span class="lang-sl">Obiranje jabolk — ZDAJ</span><span class="lang-en">Apple picking — RIGHT NOW</span></h3>
+<p><span class="lang-sl">Hiter dodatni denar na proste dni, brez razgovora. Prijaviš se neposredno pri kmetiji.</span><span class="lang-en">Quick extra money on your days off, no interview. You apply directly with the farm.</span></p>
+<ul>
+<li><b>Sadjarstvo Slom</b> — <span class="lang-sl">Zreče, Loče, Slov. Bistrica, Ptuj, Limbuš, do 20. 10.</span><span class="lang-en">Zreče, Loče, Slov. Bistrica, Ptuj, Limbuš, until 20 Oct</span> · <b>031 610 514</b></li>
+<li><b>KZ Selnica ob Dravi</b> — <span class="lang-sl">40–50 oseb, do 31. 10.</span><span class="lang-en">40–50 people, until 31 Oct</span> · <b>041 770 465</b></li>
+<li><b>Meja Šentjur</b> — <span class="lang-sl">lažje delo, do 30. 10.</span><span class="lang-en">lighter work, until 30 Oct</span> · <b>03 747 1 500</b></li>
+<li><b>Kmetija Lipoglav</b> — <span class="lang-sl">Slov. Bistrica, 25.–30. 10.</span><span class="lang-en">Slov. Bistrica, 25–30 Oct</span> · <b>051 345 853</b></li>
+</ul>
+<div class="links"><a href="https://www.prlekija-on.net/lokalno/41632/priloznost-za-delo-iscejo-vec-oseb-za-obiranje-grozdja-in-jabolk" target="_blank">&#8599; <span class="lang-sl">Seznam</span><span class="lang-en">List</span></a><a href="https://www.ess.gov.si/fileadmin/user_upload/Novice/Novice_IZ/Novice_IZ_Dokumenti/Sezonska_dela_v_kmetijstvu_2026.pdf" target="_blank">&#8599; <span class="lang-sl">Zavod PDF (vse regije)</span><span class="lang-en">Service PDF (all regions)</span></a><a href="https://lider.si/sezonska-ura-v-kmetijstvu-v-letu-2026-najmanj-852-evra-posameznik-lahko-dela-do-90-dni/" target="_blank">&#8599; <span class="lang-sl">Pravila</span><span class="lang-en">Rules</span></a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag example"><span class="lang-sl">redni zaposlovalec</span><span class="lang-en">hires regularly</span></span></div>
+<h3><span class="lang-sl">Enostavna proizvodnja, prosti vikendi — Slovenske Konjice</span><span class="lang-en">Simple production, weekends off — Slovenske Konjice</span></h3>
+<p><span class="lang-sl">Sestavljanje, vizualna kontrola kakovosti, pakiranje. Izkušnje niso potrebne, pogodba za nedoločen čas od prvega dne. (Rok 18. 9. je potekel — Kariera take oglase objavlja redno.)</span><span class="lang-en">Assembly, visual quality control, packing. No experience needed, permanent contract from day one. (Deadline 18 Sep passed — Kariera posts these regularly.)</span></p>
+<div class="links"><a href="https://www.kariera.si/sl/delovno-mesto/kari8b7eae509d6a498699fbdbffc50d8b0b" target="_blank">&#8599; Kariera</a></div>
+</div>
+
+<!-- OBALA -->
+<h2 class="section-title" id="obala">&#127754; <span class="lang-sl">Obala in Primorska</span><span class="lang-en">Coast & Primorska</span></h2>
+
+<div class="card">
+<div class="meta"><span class="tag open"><span class="lang-sl">ROK: 30. 9. 2026 — pohiti!</span><span class="lang-en">DEADLINE: 30 Sep 2026 — hurry!</span></span><span class="tag"><span class="lang-sl">izkušnje niso potrebne</span><span class="lang-en">no experience needed</span></span></div>
+<h3><span class="lang-sl">Veterinarska tehnica — Tačka, Koper</span><span class="lang-en">Vet technician — Tačka, Koper</span></h3>
+<p><span class="lang-sl">Oskrba živali, pomoč veterinarjem, delno recepcija in trgovina. Nedoločen čas, gibljiv urnik. Pogoj: vozniški izpit B. Tačka ima 13 lokacij po Sloveniji — splača se jim poslati CV tudi za kasneje.</span><span class="lang-en">Animal care, assisting vets, partly reception and shop. Permanent, flexible hours. Requires driver's licence B. Tačka has 13 locations in Slovenia — worth sending a CV for later too.</span></p>
+<div class="contact">Marko Trobec: marko.trobec@tacka-veterina.si · <b>08 202 0160</b></div>
+<div class="links"><a href="https://tacka-veterina.si/zaposlujemo-2/" target="_blank">&#8599; Tačka</a><a href="https://www.bolha.com/prehr-industrija-zivilstvo-veterina-redne-zaposlitve/veterinarski-tehnik-m-z-oglas-16348694" target="_blank">&#8599; Bolha</a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag example"><span class="lang-sl">zaposlujejo občasno</span><span class="lang-en">hire periodically</span></span></div>
+<h3><span class="lang-sl">Oskrbnica v zavetišču — Obalno zavetišče (Marjetica Koper)</span><span class="lang-en">Shelter caretaker — Coastal shelter (Marjetica Koper)</span></h3>
+<p><span class="lang-sl">Zadnjič sta bili razpisani 2 mesti, <b>brez zahtevanih izkušenj</b>. Pogoj: vozniški B in osnovna italijanščina. Vprašaj, kdaj bo naslednji razpis.</span><span class="lang-en">Last time 2 positions were posted <b>with no experience required</b>. Requires licence B and basic Italian. Ask when the next opening is.</span></p>
+<div class="contact">kadrovska@marjeticakoper.si · <b>05 66 33 705</b></div>
+<div class="links"><a href="https://marjeticakoper.si/novice/razpis-za-prosti-delovni-mesti-oskrbnika-ali-oskrbnice-v-zavetiscu-za-zapuscene-zivali/" target="_blank">&#8599; <span class="lang-sl">Stari razpis</span><span class="lang-en">Previous ad</span></a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag example"><span class="lang-sl">redni zaposlovalec</span><span class="lang-en">hires regularly</span></span></div>
+<h3><span class="lang-sl">Veterinarska tehnica — Veterina Gorica, Nova Gorica</span><span class="lang-en">Vet technician — Veterina Gorica, Nova Gorica</span></h3>
+<p><span class="lang-sl">Izkušnje niso bile potrebne. Rok (2. 9.) je potekel, a vredno poslati CV.</span><span class="lang-en">No experience required. Deadline (2 Sep) passed, but worth sending a CV.</span></p>
+<div class="contact">veterinago@siol.net · <b>05 33 05 380</b></div>
+</div>
+
+<!-- VSEPOVSOD -->
+<h2 class="section-title" id="vsepovsod">&#127758; <span class="lang-sl">Deluje v več mestih ali od doma</span><span class="lang-en">Works in many towns or from home</span></h2>
+
+<div class="card">
+<div class="meta"><span class="tag money"><span class="lang-sl">Wolt navaja 10–12 € bruto/uro povprečno</span><span class="lang-en">Wolt states €10–12 gross/h average</span></span></div>
+<h3>&#128690; <span class="lang-sl">Dostava Wolt — Ljubljana, Maribor, Celje, Koper, Kranj …</span><span class="lang-en">Wolt delivery — Ljubljana, Maribor, Celje, Koper, Kranj …</span></h3>
+<p><span class="lang-sl">Delaš, kadar hočeš (tudi po 2 uri zvečer), izplačila tedensko. Stik s strankami je samo nekaj sekund. <b>Pogoj: popoldanski s.p.</b> (ali študentska napotnica). V dobrih urah (kosilo, večer, dež) več, v slabih lahko pod 8 €/uro. Stroške vozila odštej sama.</span><span class="lang-en">Work when you want (even 2 hours in the evening), paid weekly. Customer contact is just seconds. <b>Requires an after-hours sole proprietorship (popoldanski s.p.)</b> (or student referral). More in peak hours (lunch, evening, rain), can drop below €8/h in slow hours. Vehicle costs are yours.</span></p>
+<div class="links"><a href="https://explore.wolt.com/sl/svn/couriers" target="_blank">&#8599; Wolt</a><a href="https://zasluzek.si/koliko-zasluzi-wolt-dostavljalec-v-sloveniji/" target="_blank">&#8599; <span class="lang-sl">Realni zaslužki</span><span class="lang-en">Real earnings</span></a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag"><span class="lang-sl">Slovenija je podprta</span><span class="lang-en">Slovenia is supported</span></span></div>
+<h3>&#128203; <span class="lang-sl">Prolific — plačane univerzitetne ankete</span><span class="lang-en">Prolific — paid university surveys</span></h3>
+<p><span class="lang-sl">Slovenija je na uradnem seznamu držav. Potrebuješ osebni dokument, slovensko (evropsko) telefonsko številko in angleščino. Majhen denar, a z mucko na kavču. &#128049;</span><span class="lang-en">Slovenia is on the official country list. You need an ID, a Slovenian (European) phone number and English. Small money, but with your kitty on the sofa. &#128049;</span></p>
+<div class="links"><a href="https://participant-help.prolific.com/en/articles/445007-who-can-participate-in-studies-on-prolific" target="_blank">&#8599; Prolific</a><a href="https://netteblog.com/prolific-slovenija/" target="_blank">&#8599; <span class="lang-sl">Izkušnje v SLO</span><span class="lang-en">Experience in SLO</span></a></div>
+</div>
+
+<div class="card">
+<h3>&#129518; <span class="lang-sl">Primer realnega meseca (samo za predstavo)</span><span class="lang-en">Example month (just for an idea)</span></h3>
+<table>
+<tr><td><span class="lang-sl">4 sprehodi psov na teden × 8 € (cena kot pri Moj Lordek)</span><span class="lang-en">4 dog walks per week × €8 (price like Moj Lordek)</span></td><td>~130 €</td></tr>
+<tr><td><span class="lang-sl">2 vikenda varstva z nočitvijo (2 noči × 30 €, cena kot pri Hors)</span><span class="lang-en">2 overnight weekends (2 nights × €30, price like Hors)</span></td><td>~120 €</td></tr>
+<tr><td><span class="lang-sl">4 sobote na obiranju jabolk (8 ur × 8,52 € bruto)</span><span class="lang-en">4 Saturdays picking apples (8 h × €8.52 gross)</span></td><td>~270 € <span class="lang-sl">bruto</span><span class="lang-en">gross</span></td></tr>
+</table>
+<p style="margin-top:8px;font-size:.8rem;color:var(--muted)"><span class="lang-sl">Ni čudež — a je stabilno, legalno in brez strahu.</span><span class="lang-en">Not a miracle — but it's stable, legal and without fear.</span></p>
+</div>
+
+<!-- KREDIT -->
+<h2 class="section-title" id="kredit">&#127968; <span class="lang-sl">Če je obrok kredita pretežak</span><span class="lang-en">If the mortgage payment is too heavy</span></h2>
+<div class="section-sub"><span class="lang-sl">Včasih je najhitrejši »dodatni zaslužek« nižji obrok.</span><span class="lang-en">Sometimes the fastest "extra income" is a lower monthly payment.</span></div>
+
+<div class="box info">
+<h4>&#127974; <span class="lang-sl">Pogovor z banko — PREJ, ne potem</span><span class="lang-en">Talk to the bank — BEFORE, not after</span></h4>
+<ul>
+<li><span class="lang-sl">Banke same pozivajo, naj se oglasiš <b>čim prej</b>. Možnosti so: <b>moratorij</b> (odlog plačil, vmes pogosto samo obresti), <b>reprogram</b>, <b>podaljšanje ročnosti</b> (nižji mesečni obrok) ali refinanciranje.</span><span class="lang-en">Banks themselves ask you to come <b>as early as possible</b>. Options: <b>moratorium</b> (payment pause, often interest-only), <b>rescheduling</b>, <b>extending the term</b> (lower monthly payment) or refinancing.</span></li>
+<li><span class="lang-sl">Pomembno: pri zamudi z <b>dvema zaporednima obrokoma</b> lahko banka odstopi od pogodbe. Zato je bolje iti na pogovor, preden se to zgodi.</span><span class="lang-en">Important: after <b>two consecutive missed payments</b> the bank can terminate the contract. So it's better to talk before that happens.</span></li>
+</ul>
+<div class="links"><a href="https://www.nlb.si/content/dam/nlb/pdf-files/osebne-finance/krediti/politika-ravnanja-banke-za-primer-ko-potrosnik-zamuja-s-placili-zapadlih-obveznosti-iz-kreditne-pogodbe-za-nepremicnino.pdf" target="_blank">&#8599; <span class="lang-sl">Primer: politika NLB</span><span class="lang-en">Example: NLB policy</span></a><a href="https://cekin.si/finance/krediti/izguba-sluzbe-med-odplacevanjem-kredita.html" target="_blank">&#8599; Cekin.si</a><a href="https://www.zps.si/aktualne-vsebine/odgovori-na-vprasanja-potrosnikov/redna-placila-kreditnih-obrokov-jemljite-resno-2025-07-31" target="_blank">&#8599; ZPS</a></div>
+</div>
+
+<div class="box good">
+<h4>&#129309; SOS dolgovi — <span class="lang-sl">brezplačna pomoč</span><span class="lang-en">free help</span></h4>
+<span class="lang-sl">Program društva Prelomi: pomoč pri načrtu proračuna, urejanju dolgov, administraciji in psihološka opora. <b>V celoti brezplačno</b>, tudi za zaposlene. Običajno 3–6 mesecev spremljanja.</span><span class="lang-en">Programme by Prelomi: help with a budget plan, debts, paperwork, plus emotional support. <b>Completely free</b>, also for employed people. Usually 3–6 months of guidance.</span>
+<div class="contact"><span class="lang-sl">pon–pet 7–15h:</span><span class="lang-en">Mon–Fri 7am–3pm:</span> <b>040 200 030</b> · prelomi@siol.net</div>
+<div class="links"><a href="https://www.prelomi.si/programi/sos-dolgovi/" target="_blank">&#8599; prelomi.si</a></div>
+</div>
+
+<div class="box warn">
+<h4>&#9888;&#65039; <span class="lang-sl">Pazi se prevar</span><span class="lang-en">Watch out for scams</span></h4>
+<ul>
+<li><span class="lang-sl">Nikoli ne plačaj za »službo« ali »izbris dolgov«.</span><span class="lang-en">Never pay for a "job" or "debt removal".</span></li>
+<li><span class="lang-sl">Bolha.com uporabnikov nikoli ne kontaktira prek Viberja ali WhatsAppa.</span><span class="lang-en">Bolha.com never contacts users via Viber or WhatsApp.</span></li>
+</ul>
+</div>
+
+<div class="box love">
+<h4>&#128150;</h4>
+<span class="lang-sl">Izberi eno stvar iz tega seznama in jo naredi ta teden — en klic je dovolj. Ne rabiš vsega naenkrat. Tvoje znanje z živalmi je resnično vredno denarja.</span><span class="lang-en">Pick one thing from this list and do it this week — one phone call is enough. You don't need everything at once. Your skills with animals are genuinely worth money.</span>
+</div>
+
+</div>
+
+<script>
+function setLang(lang){
+document.body.className=lang;
+document.getElementById('btn-sl').className=lang==='sl'?'active':'';
+document.getElementById('btn-en').className=lang==='en'?'active':'';
+try{localStorage.setItem('ninaQuizLang',lang);}catch(e){}
+}
+(function(){var l='sl';try{l=localStorage.getItem('ninaQuizLang')||'sl';}catch(e){}var m=location.search.match(/lang=(sl|en)/);if(m)l=m[1];setLang(l);})();
+</script>
+</body>
+</html>

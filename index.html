@@ -12,20 +12,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 h1{text-align:center;font-size:1.8rem;margin-bottom:6px;color:#f6eefc}
 .sub{text-align:center;color:#b3a6c4;margin-bottom:28px;font-size:.95rem}
 a.item{display:flex;gap:14px;align-items:center;background:#181320;border:1px solid #2a2236;border-radius:16px;padding:16px;margin-bottom:12px;color:#e8e1ef;text-decoration:none}
-a.item:active{border-color:#c77dff}
+a.item.main{background:linear-gradient(160deg,#2a1840,#181320);border-color:#c77dff;box-shadow:0 6px 24px rgba(199,125,255,.2)}
+a.item.done{opacity:.55}
 .icon{width:46px;height:46px;flex-shrink:0;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;background:#241a32;border:1px solid #322843}
 .t{font-weight:600}
-.d{font-size:.84rem;color:#75688a}
+.d{font-size:.84rem;color:#9a8cb0}
 </style>
 </head>
 <body>
 <div class="wrap">
 <h1>&#127769; Za Nino</h1>
 <p class="sub">For Nina &#128049;&#10084;&#65039;</p>
-<a class="item" href="korak-1.html"><div class="icon">&#9998;&#65039;</div><div><div class="t">Korak 1 · Step 1</div><div class="d">Kakšna služba te osreči? · Which job makes you happy?</div></div></a>
-<a class="item" href="korak-2.html"><div class="icon">&#128270;</div><div><div class="t">Korak 2 · Step 2</div><div class="d">Poglabljamo · Going deeper</div></div></a>
-<a class="item" href="ideje.html"><div class="icon">&#127807;</div><div><div class="t">Dodatni zaslužek · Extra income</div><div class="d">Ideje, ki ti ustrezajo · Ideas that fit you</div></div></a>
-<a class="item" href="ponudbe.html"><div class="icon">&#128205;</div><div><div class="t">Konkretne ponudbe · Real offers</div><div class="d">Po regijah, s kontakti · By region, with contacts</div></div></a>
+<a class="item main" href="korak-2.html"><div class="icon">&#128205;</div><div><div class="t">Korak 2 · Step 2</div><div class="d">Resnične ponudbe + kratka vprašanja · Real offers + quick questions</div></div></a>
+<a class="item done" href="korak-1.html"><div class="icon">&#10004;&#65039;</div><div><div class="t">Korak 1 · Step 1</div><div class="d">Opravljeno — hvala! · Done — thank you!</div></div></a>
 </div>
 </body>
 </html>

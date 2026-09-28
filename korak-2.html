@@ -5,57 +5,86 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
-<title>Nina Quiz Korak 2</title>
+<meta name="robots" content="noindex, nofollow">
+<title>Nina — Korak 2</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{--bg:#0d0b12;--card:#181320;--border:#2a2236;--ink:#e8e1ef;--soft:#b3a6c4;--muted:#75688a;--accent:#c77dff;--accent2:#ff8fcf;--deep:#8a4fd6;--rose:#ff9ec4;--top:env(safe-area-inset-top,0px);--bot:env(safe-area-inset-bottom,0px)}
-html{-webkit-text-size-adjust:100%}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:radial-gradient(900px 500px at 80% -10%,rgba(138,79,214,.18),transparent 60%),var(--bg);color:var(--ink);line-height:1.7;min-height:100dvh}
+:root{--bg:#0d0b12;--card:#181320;--border:#2a2236;--ink:#e8e1ef;--soft:#b3a6c4;--muted:#75688a;--accent:#c77dff;--accent2:#ff8fcf;--deep:#8a4fd6;--gold:#e8b86f;--green:#8fe3b0;--blue:#9fb6ff;--top:env(safe-area-inset-top,0px);--bot:env(safe-area-inset-bottom,0px)}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:radial-gradient(900px 500px at 80% -10%,rgba(138,79,214,.18),transparent 60%),var(--bg);color:var(--ink);line-height:1.6;min-height:100dvh}
 body.sl .lang-en{display:none!important}
 body.en .lang-sl{display:none!important}
-.ios-tip{max-width:720px;margin:calc(12px + var(--top)) auto 0;padding:0 16px}
-.ios-tip-inner{background:#1f1530;border:1px solid #4a3568;border-radius:14px;padding:14px 16px;font-size:.86rem;color:var(--soft)}
-.ios-tip-inner strong{color:var(--accent2)}
+a{color:var(--accent2);text-decoration:none;word-break:break-word}
 .lang-switch{position:fixed;top:calc(10px + var(--top));right:14px;z-index:300;display:flex;background:rgba(20,17,28,.92);border:1px solid var(--border);border-radius:999px;padding:4px}
 .lang-switch button{border:none;background:transparent;color:var(--muted);font-size:.82rem;font-weight:600;padding:8px 16px;border-radius:999px}
 .lang-switch button.active{background:linear-gradient(135deg,var(--deep),var(--accent));color:#fff}
-.hero{text-align:center;padding:calc(70px + var(--top)) 20px 30px}
+.hero{text-align:center;padding:calc(70px + var(--top)) 20px 20px}
 .hero .moon{font-size:2rem;display:block;margin-bottom:8px}
-.hero h1{font-size:2rem;font-weight:700;color:#f6eefc;margin-bottom:12px;line-height:1.2}
-.hero p{font-size:1rem;color:var(--soft);max-width:560px;margin:0 auto}
-.hero .hint{margin-top:16px;font-size:.85rem;color:var(--muted);font-style:italic;max-width:520px;margin-left:auto;margin-right:auto}
-.recap{max-width:720px;margin:0 auto;padding:0 16px}
-.recap-inner{background:linear-gradient(160deg,#1e1530,#140f1d);border:1px solid #3a2a52;border-radius:16px;padding:18px}
-.recap-inner h3{color:var(--accent2);font-size:1.1rem;margin-bottom:10px}
-.recap-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-.recap-tag{background:rgba(199,125,255,.12);border:1px solid rgba(199,125,255,.25);color:var(--soft);font-size:.78rem;padding:5px 10px;border-radius:999px}
-.recap-inner p{font-size:.88rem;color:var(--muted)}
-.progress-wrap{position:sticky;top:0;z-index:100;background:rgba(13,11,18,.92);border-bottom:1px solid #1d1729}
-.progress{height:3px;background:linear-gradient(90deg,var(--deep),var(--accent),var(--accent2));width:0%;transition:width .3s}
-.container{max-width:720px;margin:0 auto;padding:14px 16px calc(180px + var(--bot))}
-.section{margin-top:36px}
-.section-header{display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid #221b30;margin-bottom:6px}
-.section-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:#241a32;border:1px solid #322843}
-.section-header h2{font-size:1.35rem;color:#f0e8f8}
-.section-subtitle{font-size:.86rem;color:var(--muted);margin:8px 0 18px;font-style:italic}
-.question-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px}
-.question-card:focus-within{border-color:var(--accent)}
-.q-num{font-size:.7rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
-.q-text{font-size:1.02rem;font-weight:500;margin-bottom:4px}
-.q-hint{font-size:.8rem;color:var(--muted);margin-bottom:12px;font-style:italic}
-textarea,select{width:100%;background:#0c0a12;border:1px solid #241d33;border-radius:12px;padding:14px;color:var(--ink);font-family:inherit;font-size:16px;line-height:1.6;-webkit-appearance:none}
-textarea{min-height:92px;resize:vertical}
-select{cursor:pointer}
-textarea:focus,select:focus{outline:none;border-color:var(--accent)}
-.button-area{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(0deg,var(--bg) 60%,transparent);padding:24px 14px calc(16px + var(--bot));display:flex;flex-wrap:wrap;gap:8px;justify-content:center;z-index:50}
-.btn{padding:14px 20px;border-radius:14px;font-family:inherit;font-size:1rem;font-weight:600;border:none;touch-action:manipulation}
-.btn-main{background:linear-gradient(135deg,var(--deep),var(--accent),var(--accent2));color:#fff;flex:1 1 100%;order:-1}
-.btn-sec{background:#1a1426;color:var(--soft);border:1px solid var(--border);flex:1 1 0}
-.stats{text-align:center;padding:12px;font-size:.84rem;color:var(--muted)}
-.footer-note{text-align:center;font-style:italic;color:var(--accent);margin-top:20px}
-.toast{position:fixed;top:calc(56px + var(--top));left:50%;transform:translate(-50%,-10px);background:#1f1530;border:1px solid #3a2a52;color:var(--accent2);padding:12px 20px;border-radius:12px;font-size:.9rem;z-index:200;opacity:0;pointer-events:none;transition:opacity .3s;max-width:90vw;text-align:center}
+.hero h1{font-size:1.9rem;font-weight:700;color:#f6eefc;margin-bottom:12px;line-height:1.2}
+.hero p{font-size:.98rem;color:var(--soft);max-width:560px;margin:0 auto}
+.hero .hint{margin-top:14px;font-size:.86rem;color:var(--accent2);max-width:520px;margin-left:auto;margin-right:auto}
+.hero .date{margin-top:10px;font-size:.78rem;color:var(--muted);font-style:italic}
+.nav{position:sticky;top:0;z-index:100;background:rgba(13,11,18,.94);border-bottom:1px solid #1d1729;padding:10px 12px;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch}
+.nav a{display:inline-block;font-size:.8rem;color:var(--soft);background:#1a1426;border:1px solid var(--border);border-radius:999px;padding:6px 12px;margin-right:6px}
+.container{max-width:720px;margin:0 auto;padding:6px 16px calc(130px + var(--bot))}
+.section-title{font-size:1.25rem;color:#f0e8f8;margin:34px 0 6px;padding-bottom:10px;border-bottom:1px solid #221b30;scroll-margin-top:60px}
+.section-sub{font-size:.86rem;color:var(--muted);font-style:italic;margin:8px 0 14px}
+.card{background:linear-gradient(160deg,var(--card),#140f1d);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:12px}
+.card h3{font-size:1rem;color:#f6eefc;line-height:1.35;margin-bottom:6px}
+.card p{font-size:.9rem;color:var(--soft);margin-bottom:8px}
+.card ul{margin:4px 0 8px 18px;font-size:.88rem;color:var(--soft)}
+.card li{margin-bottom:3px}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.tag{font-size:.74rem;padding:3px 9px;border-radius:999px;background:rgba(199,125,255,.12);border:1px solid rgba(199,125,255,.25);color:var(--soft)}
+.tag.money{background:rgba(143,227,176,.10);border-color:rgba(143,227,176,.3);color:var(--green)}
+.tag.open{background:rgba(232,184,111,.12);border-color:rgba(232,184,111,.35);color:var(--gold)}
+.tag.example{background:rgba(159,182,255,.10);border-color:rgba(159,182,255,.3);color:var(--blue)}
+.contact{font-size:.86rem;background:#0f0c16;border:1px solid #241d33;border-radius:10px;padding:8px 10px;margin-top:6px;color:var(--soft)}
+.contact b{color:var(--ink)}
+.links{margin-top:8px;font-size:.84rem}
+.links a{display:inline-block;margin:2px 10px 2px 0}
+.box{border-radius:16px;padding:16px;margin:14px 0;font-size:.9rem}
+.box h4{margin-bottom:8px;font-size:1rem}
+.box ul{margin-left:18px}
+.box li{margin-bottom:6px}
+.box.info{background:#161a26;border:1px solid #2b3552;color:#b9c4e0}
+.box.info h4{color:var(--blue)}
+.box.warn{background:#23151c;border:1px solid #4d2a3a;color:#e6bccb}
+.box.warn h4{color:var(--accent2)}
+.box.good{background:#12201a;border:1px solid #2a4a3a;color:#bfe6cf}
+.box.good h4{color:var(--green)}
+.box.love{background:linear-gradient(160deg,#1e1530,#140f1d);border:1px solid #3a2a52;color:var(--soft);text-align:center}
+.box.love h4{color:var(--accent2)}
+table{width:100%;border-collapse:collapse;font-size:.84rem;margin-top:6px}
+td{padding:6px 4px;border-bottom:1px solid #241d33;color:var(--soft);vertical-align:top}
+td:last-child{text-align:right;color:var(--green);white-space:nowrap}
+
+/* mini questions */
+.q{position:relative;background:linear-gradient(160deg,#241634,#170f22);border:1.5px dashed rgba(255,143,207,.45);border-radius:18px;padding:16px 16px 14px;margin:18px 0 22px}
+.q.done{border-style:solid;border-color:rgba(199,125,255,.6)}
+.q-badge{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent2);background:rgba(255,143,207,.1);border:1px solid rgba(255,143,207,.3);border-radius:999px;padding:3px 10px;margin-bottom:8px}
+.q.done .q-badge{color:#fff;background:linear-gradient(135deg,var(--deep),var(--accent));border-color:transparent}
+.q-text{font-size:1rem;font-weight:600;color:#f6eefc;margin-bottom:4px}
+.q-hint{font-size:.8rem;color:var(--muted);font-style:italic;margin-bottom:8px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 10px}
+.opt{position:relative;cursor:pointer}
+.opt input{position:absolute;opacity:0;width:1px;height:1px}
+.chip{display:inline-block;font-size:.88rem;line-height:1.35;color:var(--soft);background:#120d1a;border:1px solid #33284a;border-radius:999px;padding:8px 13px;transition:all .15s}
+.opt input:checked+.chip{color:#fff;background:linear-gradient(135deg,var(--deep),var(--accent));border-color:transparent;box-shadow:0 3px 14px rgba(199,125,255,.35)}
+.opt input:focus-visible+.chip{outline:2px solid var(--accent2)}
+.q textarea{width:100%;min-height:44px;background:#0c0a12;border:1px solid #241d33;border-radius:12px;padding:10px 12px;color:var(--ink);font-family:inherit;font-size:16px;line-height:1.5;-webkit-appearance:none;resize:vertical}
+.q textarea:focus{outline:none;border-color:var(--accent)}
+.q textarea.big{min-height:110px}
+
+.button-area{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(0deg,var(--bg) 62%,transparent);padding:22px 14px calc(14px + var(--bot));z-index:50}
+.button-inner{max-width:720px;margin:0 auto;display:flex;gap:8px;align-items:center}
+.counter{font-size:.8rem;color:var(--soft);background:#1a1426;border:1px solid var(--border);border-radius:12px;padding:12px 10px;white-space:nowrap}
+.btn{padding:14px 16px;border-radius:14px;font-family:inherit;font-size:.98rem;font-weight:600;border:none;touch-action:manipulation}
+.btn-main{background:linear-gradient(135deg,var(--deep),var(--accent),var(--accent2));color:#fff;flex:1}
+.btn-sec{background:#1a1426;color:var(--soft);border:1px solid var(--border)}
+.toast{position:fixed;top:calc(56px + var(--top));left:50%;transform:translate(-50%,-10px);background:#1f1530;border:1px solid #3a2a52;color:var(--accent2);padding:12px 20px;border-radius:12px;font-size:.9rem;z-index:400;opacity:0;pointer-events:none;transition:opacity .3s;max-width:90vw;text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-.autosave{position:fixed;top:calc(54px + var(--top));right:14px;font-size:.74rem;color:#4a3f5c;z-index:150}
+.autosave{position:fixed;top:calc(54px + var(--top));right:14px;font-size:.74rem;color:var(--rose,#ff9ec4);z-index:150;pointer-events:none}
 </style>
 </head>
 <body class="sl">
@@ -67,160 +96,486 @@ textarea:focus,select:focus{outline:none;border-color:var(--accent)}
 <div class="autosave" id="autosave"></div>
 <div class="toast" id="toast"></div>
 
-<div class="ios-tip">
-<div class="ios-tip-inner">
-<span class="lang-sl"><strong>iPhone navodilo:</strong> Če vidiš samo prazno stran, pritisni ikono za deljenje (kvadratek s puščico) zgoraj ali spodaj in izberi <strong>Odpri v Safariju</strong>. Ne ostani v WhatsAppu.</span>
-<span class="lang-en"><strong>iPhone tip:</strong> If you only see a blank page, tap the share icon and choose <strong>Open in Safari</strong>. Don't stay in WhatsApp.</span>
-</div>
-</div>
-
 <div class="hero">
 <span class="moon">&#127769;</span>
-<h1><span class="lang-sl">Korak 2 — Poglabljamo</span><span class="lang-en">Step 2 — Going deeper</span></h1>
-<p><span class="lang-sl">Super odgovori! Na podlagi tvojih odgovorov smo izluščili 3 smeri, ki ti najbolj ustrezajo. Zdaj gremo bolj v detajle — da najdemo prave službe.</span><span class="lang-en">Great answers! Based on what you shared, we found 3 directions that fit you best. Now let's go into more detail — so we can find the right jobs.</span></p>
-<div class="hint"><span class="lang-sl">Tvoji odgovori se sproti shranjujejo na tem telefonu. Na koncu pritisni &laquo;Pošlji&raquo; in izberi WhatsApp ali Sporočila, da mi jih pošlješ. &#128049;&#10084;&#65039;</span><span class="lang-en">Your answers save on this phone as you go. At the end, tap &laquo;Send&raquo; and choose WhatsApp or Messages to send them to me. &#128049;&#10084;&#65039;</span></div>
+<h1><span class="lang-sl">Korak 2 — Resnične ponudbe zate</span><span class="lang-en">Step 2 — Real offers for you</span></h1>
+<p><span class="lang-sl">Hvala za korak 1! &#128150; Tukaj so resnične službe in zaslužki — z imeni podjetij, telefonskimi številkami in roki, po regijah.</span><span class="lang-en">Thank you for step 1! &#128150; Here are real jobs and earning options — with company names, phone numbers and deadlines, by region.</span></p>
+<div class="hint"><span class="lang-sl">&#10024; Med branjem te čakajo kratka vprašanja — samo tapni, kar velja zate. Če želiš, dodaj svoje besede. Na koncu pritisni »Pošlji«.</span><span class="lang-en">&#10024; While reading, little questions pop up — just tap what fits you. Add your own words if you like. At the end, tap "Send".</span></div>
+<div class="date"><span class="lang-sl">Stanje: 29. 9. 2026. Odgovori se sproti shranjujejo na tvojem telefonu.</span><span class="lang-en">As of 29 Sep 2026. Answers save on your phone as you go.</span></div>
 </div>
 
-<div class="recap">
-<div class="recap-inner">
-<h3><span class="lang-sl">Kaj smo razbrali iz koraka 1</span><span class="lang-en">What we learned from step 1</span></h3>
-<div class="recap-tags">
-<span class="recap-tag">&#128049; <span class="lang-sl">Živali</span><span class="lang-en">Animals</span></span>
-<span class="recap-tag">&#9881;&#65039; <span class="lang-sl">Proizvodnja</span><span class="lang-en">Production</span></span>
-<span class="recap-tag">&#127912; <span class="lang-sl">Detajli &amp; navodila</span><span class="lang-en">Details &amp; instructions</span></span>
-<span class="recap-tag">&#128101; <span class="lang-sl">Ekipa, ne stranke</span><span class="lang-en">Team, not customers</span></span>
-<span class="recap-tag">&#128683; <span class="lang-sl">Ne gostinstvo</span><span class="lang-en">No hospitality</span></span>
+<div class="nav">
+<a href="#zakaj">&#128161; <span class="lang-sl">Iskanje</span><span class="lang-en">Job search</span></a>
+<a href="#zivali">&#128054; <span class="lang-sl">Živali</span><span class="lang-en">Animals</span></a>
+<a href="#regije">&#128205; <span class="lang-sl">Regije</span><span class="lang-en">Regions</span></a>
+<a href="#vsepovsod">&#127758; <span class="lang-sl">Povsod</span><span class="lang-en">Everywhere</span></a>
+<a href="#kredit">&#127968; <span class="lang-sl">Kredit</span><span class="lang-en">Mortgage</span></a>
+<a href="#konec">&#128150; <span class="lang-sl">Konec</span><span class="lang-en">Finish</span></a>
 </div>
-<p><span class="lang-sl">Ti ustreza delo z živalmi (okoljevarstveni tehnik, jahanje), gibalno delo v proizvodnji po navodilih, natančno ustvarjalno delo in sodelovanje s sodelavci. Ne želiš dela s strankami, otroki, starejšimi, težkega fizičnega dela na vremenu ali mobinga.</span><span class="lang-en">You fit work with animals (environmental technician, riding), active production work following instructions, precise creative work, and teamwork with colleagues. You don't want customer-facing work, children, elderly care, heavy outdoor work, or workplace bullying.</span></p>
-</div>
-</div>
-
-<div class="progress-wrap"><div class="progress" id="progressBar"></div></div>
 
 <div class="container">
 
-<!-- A ZIVALI -->
-<div class="section">
-<div class="section-header"><div class="section-icon">&#128049;</div><h2><span class="lang-sl">A — Delo z živalmi</span><span class="lang-en">A — Working with animals</span></h2></div>
-<div class="section-subtitle"><span class="lang-sl">Tvoja najmočnejša smer. Povej, kaj bi te res osrečilo.</span><span class="lang-en">Your strongest direction. Tell us what would truly make you happy.</span></div>
+<!-- ================= ZAKAJ ================= -->
+<h2 class="section-title" id="zakaj">&#128161; <span class="lang-sl">Zakaj te ne vzamejo — in kaj res pomaga</span><span class="lang-en">Why you're not getting hired — and what actually helps</span></h2>
+<div class="section-sub"><span class="lang-sl">Ni stvar tebe. Online prijave na velike oglase so loterija.</span><span class="lang-en">It's not about you. Online applications to big ads are a lottery.</span></div>
 
-<div class="question-card"><div class="q-num qn">Vprašanje 1</div><div class="q-text"><span class="lang-sl">Katera živalska dela te najbolj zanimajo? Izberi več, če želiš.</span><span class="lang-en">Which animal-related jobs interest you most? Pick several if you like.</span></div><div class="q-hint"><span class="lang-sl">Npr. zavetišče, veterinarska ambulanta (brez recepcije), konjušnica, zoo, trgovina z živalmi, pet sitting, čebelarstvo, ribogojstvo, delo na kmetiji z živalmi...</span><span class="lang-en">E.g. shelter, vet clinic (not reception), stable, zoo, pet shop, pet sitting, beekeeping, fish farming, farm work with animals...</span></div><textarea id="q1_1"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 2</div><div class="q-text"><span class="lang-sl">Bi raje delala z domačimi živalmi, kmetijskimi ali divjimi živalmi?</span><span class="lang-en">Would you rather work with pets, farm animals, or wild animals?</span></div><textarea id="q1_2"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 3</div><div class="q-text"><span class="lang-sl">Spomniš se kaj konkretnega iz šolanja okoljevarstvenega tehnika, kar bi rada ponovno delala?</span><span class="lang-en">Do you remember anything specific from your environmental technician studies you'd like to do again?</span></div><div class="q-hint"><span class="lang-sl">Predmeti o živalih, obnašanju, gojitvi, ekologiji...</span><span class="lang-en">Animal subjects, behavior, breeding, ecology...</span></div><textarea id="q1_3"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 4</div><div class="q-text"><span class="lang-sl">Ker si bila trenerka jahanja — bi rada poskusila delo v konjušnici ali na kmetiji s konji?</span><span class="lang-en">Since you were a riding trainer — would you like to try work at a stable or horse farm?</span></div><div class="q-hint"><span class="lang-sl">Negovanje konjev, hranjenje, čiščenje boxov, pomoč pri treningih...</span><span class="lang-en">Horse care, feeding, cleaning stalls, helping with training...</span></div><textarea id="q1_4"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 5</div><div class="q-text"><span class="lang-sl">Na veterinarskem bi morale biti tudi lastniki živali (stranke). Kako bi se počutila ob tem?</span><span class="lang-en">At a vet clinic there would also be pet owners (customers). How would you feel about that?</span></div><div class="q-hint"><span class="lang-sl">Samo kratki stiki? Samo če so prijazni? Sploh ne?</span><span class="lang-en">Only brief contact? Only if they're kind? Not at all?</span></div><textarea id="q1_5"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 6</div><div class="q-text"><span class="lang-sl">Ali bi šla na kratek tečaj ali usposabljanje za živali (npr. 2–6 mesecev), če bi to odprlo boljšo službo?</span><span class="lang-en">Would you take a short course or training for animals (e.g. 2–6 months) if it opened a better job?</span></div><textarea id="q1_6"></textarea></div>
+<div class="q" data-q="search_now" data-type="multi">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Kako zdaj iščeš službo?</span><span class="lang-en">How do you look for jobs right now?</span></div>
+<div class="q-hint"><span class="lang-sl">Lahko izbereš več.</span><span class="lang-en">Pick as many as you like.</span></div>
+<div class="opts">
+<label class="opt"><input type="checkbox" value="portals"><span class="chip"><span class="lang-sl">Spletni portali</span><span class="lang-en">Online job portals</span></span></label>
+<label class="opt"><input type="checkbox" value="email_cv"><span class="chip"><span class="lang-sl">Pošljem CV po e-pošti</span><span class="lang-en">I email my CV</span></span></label>
+<label class="opt"><input type="checkbox" value="in_person"><span class="chip"><span class="lang-sl">Grem osebno vprašat</span><span class="lang-en">I ask in person</span></span></label>
+<label class="opt"><input type="checkbox" value="phone"><span class="chip"><span class="lang-sl">Pokličem</span><span class="lang-en">I call employers</span></span></label>
+<label class="opt"><input type="checkbox" value="friends"><span class="chip"><span class="lang-sl">Prek prijateljev / družine</span><span class="lang-en">Through friends / family</span></span></label>
+<label class="opt"><input type="checkbox" value="agency"><span class="chip"><span class="lang-sl">Prek agencije</span><span class="lang-en">Through an agency</span></span></label>
+<label class="opt"><input type="checkbox" value="not_active"><span class="chip"><span class="lang-sl">Trenutno ne iščem aktivno</span><span class="lang-en">Not actively searching right now</span></span></label>
+</div>
+<textarea></textarea>
 </div>
 
-<!-- B PROIZVODNJA -->
-<div class="section">
-<div class="section-header"><div class="section-icon">&#9881;&#65039;</div><h2><span class="lang-sl">B — Proizvodnja</span><span class="lang-en">B — Production</span></h2></div>
-<div class="section-subtitle"><span class="lang-sl">Gibalno delo v zaprtih prostorih, po navodilih — kot si omenila.</span><span class="lang-en">Active indoor work, following instructions — as you mentioned.</span></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 7</div><div class="q-text"><span class="lang-sl">Katera vrsta proizvodnje te zanima?</span><span class="lang-en">Which type of production interests you?</span></div><div class="q-hint"><span class="lang-sl">Hrana, farmacevtska, kovina/plastika, pakiranje, tekstil, avtomobilska, elektronika...</span><span class="lang-en">Food, pharmaceutical, metal/plastic, packaging, textile, automotive, electronics...</span></div><textarea id="q2_1"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 8</div><div class="q-text"><span class="lang-sl">Bi delala po jasnih navodilih in ponavljajočih korakih — kot pri pobarvanki?</span><span class="lang-en">Would you work with clear instructions and repeating steps — like with coloring books?</span></div><div class="q-hint"><span class="lang-sl">Zakaj da ali zakaj ne?</span><span class="lang-en">Why yes or why not?</span></div><textarea id="q2_2"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 9</div><div class="q-text"><span class="lang-sl">Bi delala v čisti, klimatizirani proizvodnji (npr. tovarna, pakiranje)?</span><span class="lang-en">Would you work in a clean, climate-controlled factory (e.g. packaging, assembly)?</span></div><textarea id="q2_3"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 10</div><div class="q-text"><span class="lang-sl">Bi delala z detajli in kontrolo kakovosti (preverjanje izdelkov, iskanje napak)?</span><span class="lang-en">Would you work with details and quality control (checking products, finding defects)?</span></div><div class="q-hint"><span class="lang-sl">To ustreza tvoji natančnosti pri pobarvankah.</span><span class="lang-en">This fits your precision with coloring books.</span></div><textarea id="q2_4"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 11</div><div class="q-text"><span class="lang-sl">Kaj te skrbi ali moti pri delu v proizvodnji?</span><span class="lang-en">What worries or bothers you about working in production?</span></div><div class="q-hint"><span class="lang-sl">Hrup, monotonija, izmene, fizično naporno...</span><span class="lang-en">Noise, monotony, shifts, physically tiring...</span></div><textarea id="q2_5"></textarea></div>
+<div class="q" data-q="stuck" data-type="multi">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Kje se najbolj zatakne?</span><span class="lang-en">Where does it get stuck the most?</span></div>
+<div class="opts">
+<label class="opt"><input type="checkbox" value="no_fitting_ads"><span class="chip"><span class="lang-sl">Ne najdem oglasov, ki mi ustrezajo</span><span class="lang-en">I can't find ads that fit me</span></span></label>
+<label class="opt"><input type="checkbox" value="cv"><span class="chip"><span class="lang-sl">Ne vem, kako napisati dober CV</span><span class="lang-en">I don't know how to write a good CV</span></span></label>
+<label class="opt"><input type="checkbox" value="no_reply"><span class="chip"><span class="lang-sl">Prijavim se, pa ni odgovora</span><span class="lang-en">I apply but never hear back</span></span></label>
+<label class="opt"><input type="checkbox" value="interviews"><span class="chip"><span class="lang-sl">Razgovori me spravljajo v stres</span><span class="lang-en">Interviews stress me out</span></span></label>
+<label class="opt"><input type="checkbox" value="requirements"><span class="chip"><span class="lang-sl">Ne izpolnjujem pogojev (izkušnje, izpit …)</span><span class="lang-en">I don't meet requirements (experience, licence …)</span></span></label>
+<label class="opt"><input type="checkbox" value="no_energy"><span class="chip"><span class="lang-sl">Po službi nimam več energije</span><span class="lang-en">After work I have no energy left</span></span></label>
+</div>
+<textarea></textarea>
 </div>
 
-<!-- C DETAJLI -->
-<div class="section">
-<div class="section-header"><div class="section-icon">&#127912;</div><h2><span class="lang-sl">C — Detajli, ustvarjalnost &amp; računalnik</span><span class="lang-en">C — Details, creativity &amp; computer</span></h2></div>
-<div class="section-subtitle"><span class="lang-sl">Natančno delo po navodilih + osnovno delo za računalnikom.</span><span class="lang-en">Precise work following instructions + basic computer work.</span></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 12</div><div class="q-text"><span class="lang-sl">Bi delala od doma (npr. vnos podatkov, ilustracije po predlogi, urejanje dokumentov)?</span><span class="lang-en">Would you work from home (e.g. data entry, illustrations from templates, document editing)?</span></div><div class="q-hint"><span class="lang-sl">Kaj od tega te zanima, kaj ne?</span><span class="lang-en">What interests you, what doesn't?</span></div><textarea id="q3_1"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 13</div><div class="q-text"><span class="lang-sl">Bi raje delala v pisarni podjetja (ne od doma), brez stika s strankami?</span><span class="lang-en">Would you rather work in a company office (not from home), without customer contact?</span></div><textarea id="q3_2"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 14</div><div class="q-text"><span class="lang-sl">Katere programe na računalniku poznaš ali uporabljaš?</span><span class="lang-en">Which computer programs do you know or use?</span></div><div class="q-hint"><span class="lang-sl">Word, Excel, Canva, Photoshop, druge...</span><span class="lang-en">Word, Excel, Canva, Photoshop, others...</span></div><textarea id="q3_3"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 15</div><div class="q-text"><span class="lang-sl">Ali bi šla na kratek tečaj (npr. Excel, Canva, osnove grafičnega dizajna), če bi to pomagalo pri službi?</span><span class="lang-en">Would you take a short course (e.g. Excel, Canva, basic graphic design) if it helped with a job?</span></div><textarea id="q3_4"></textarea></div>
+<div class="box good">
+<h4>1. <span class="lang-sl">Kadrovske agencije namesto direktnih prijav</span><span class="lang-en">Staffing agencies instead of direct applications</span></h4>
+<span class="lang-sl">Agencije morajo zapolniti mesta in izrecno pišejo, da vzamejo ljudi <b>brez izkušenj</b>. Npr. Trenkwalder v Žalcu: »Nimaš izkušenj? Brez skrbi!« Pokliči svetovalko po telefonu — to je veliko bolj učinkovito kot e-pošta.</span><span class="lang-en">Agencies need to fill positions and explicitly say they take people <b>without experience</b>. E.g. Trenkwalder in Žalec: "No experience? No worries!" Call the recruiter by phone — much more effective than email.</span>
 </div>
 
-<!-- D REGIJA -->
-<div class="section">
-<div class="section-header"><div class="section-icon">&#128205;</div><h2><span class="lang-sl">D — Tvoja regija (splošno)</span><span class="lang-en">D — Your region (general)</span></h2></div>
-<div class="section-subtitle"><span class="lang-sl">Samo približna regija — ne potrebujemo natančnega naslova. To nam pomaga najti službe v tvoji bližini.</span><span class="lang-en">Only approximate region — we don't need your exact address. This helps us find jobs near you.</span></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 16</div><div class="q-text"><span class="lang-sl">V kateri regiji približno živiš ali bi rada delala?</span><span class="lang-en">In which region do you roughly live or want to work?</span></div><div class="q-hint"><span class="lang-sl">Izberi najbližjo regijo. To je dovolj.</span><span class="lang-en">Pick the nearest region. That's enough.</span></div>
-<select id="q4_1"></select></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 17</div><div class="q-text"><span class="lang-sl">Kako daleč si pripravljena potovati do službe?</span><span class="lang-en">How far are you willing to travel to work?</span></div><div class="q-hint"><span class="lang-sl">Npr. 20 min, 40 min, 1 ura, odvisno od plače...</span><span class="lang-en">E.g. 20 min, 40 min, 1 hour, depends on pay...</span></div><textarea id="q4_2"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 18</div><div class="q-text"><span class="lang-sl">Imaš vozniško dovoljenje ali avto? Ali se zanašaš na javni prevoz?</span><span class="lang-en">Do you have a driver's license or car? Or do you rely on public transport?</span></div><textarea id="q4_3"></textarea></div>
+<div class="box good">
+<h4>2. <span class="lang-sl">Brezplačna pomoč pri CV-ju in vaja za razgovor</span><span class="lang-en">Free CV help and interview practice</span></h4>
+<span class="lang-sl">Zavod RS za zaposlovanje ima <b>karierna središča</b> v Ljubljani, Mariboru, Celju, Kranju, Kopru, Novi Gorici, Novem mestu, Murski Soboti, Brežicah, Ptuju, Trbovljah in Velenju. Pomagajo pri CV-ju in lahko <b>vadiš razgovor</b>. Vse brezplačno. Kot <b>iskalka zaposlitve</b> se lahko prijaviš tudi, če si zaposlena.</span><span class="lang-en">The Employment Service has <b>career centres</b> in Ljubljana, Maribor, Celje, Kranj, Koper, Nova Gorica, Novo mesto, Murska Sobota, Brežice, Ptuj, Trbovlje and Velenje. They help with your CV and you can <b>practise interviews</b>. All free. You can register as a <b>job seeker</b> even while employed.</span>
+<div class="links"><a href="https://www.ess.gov.si/iskalci-zaposlitve/iskanje-zaposlitve/karierna-sredisca/" target="_blank">&#8599; Karierna središča</a><a href="https://www.ess.gov.si/iskalci-zaposlitve/koraki-ob-izgubi-zaposlitve/prijava-v-evidenco/" target="_blank">&#8599; <span class="lang-sl">Prijava</span><span class="lang-en">Registration</span></a></div>
+<div class="contact"><span class="lang-sl">Brezplačna številka:</span><span class="lang-en">Free hotline:</span> <b>080 20 55</b></div>
 </div>
 
-<!-- E POGOJI -->
-<div class="section">
-<div class="section-header"><div class="section-icon">&#128176;</div><h2><span class="lang-sl">E — Pogoji &amp; prioritete</span><span class="lang-en">E — Conditions &amp; priorities</span></h2></div>
-<div class="section-subtitle"><span class="lang-sl">Kaj mora služba ponuditi, da bi bila zate smiselna.</span><span class="lang-en">What a job must offer to make sense for you.</span></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 19</div><div class="q-text"><span class="lang-sl">Kakšna minimalna mesečna plača bi morala biti, da bi preživela (približno)?</span><span class="lang-en">What minimum monthly pay would you need to live on (roughly)?</span></div><div class="q-hint"><span class="lang-sl">Približno število je v redu.</span><span class="lang-en">An approximate number is fine.</span></div><textarea id="q5_1"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 20</div><div class="q-text"><span class="lang-sl">Polni ali delni delovni čas? Kdaj bi lahko začela?</span><span class="lang-en">Full-time or part-time? When could you start?</span></div><textarea id="q5_2"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 21</div><div class="q-text"><span class="lang-sl">Kaj je pri službi NAJPOMEMBNEJŠE? Razvrsti po pomembnosti.</span><span class="lang-en">What matters MOST in a job? Rank by importance.</span></div><div class="q-hint"><span class="lang-sl">Dobra plača, prijazni sodelavci, mirni vodje, rutina, blizu doma, delo z živalmi, učenje novih stvari...</span><span class="lang-en">Good pay, kind colleagues, calm managers, routine, close to home, work with animals, learning new things...</span></div><textarea id="q5_3"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 22</div><div class="q-text"><span class="lang-sl">Od 1 do 10 — kako zanimajo te 3 smeri? (Živali / Proizvodnja / Detajli+računalnik)</span><span class="lang-en">From 1 to 10 — how interested are you in these 3 directions? (Animals / Production / Details+computer)</span></div><div class="q-hint"><span class="lang-sl">Npr. Živali: 10, Proizvodnja: 7, Detajli: 5</span><span class="lang-en">E.g. Animals: 10, Production: 7, Details: 5</span></div><textarea id="q5_4"></textarea></div>
-
-<div class="question-card"><div class="q-num qn">Vprašanje 23</div><div class="q-text"><span class="lang-sl">Še kaj, kar bi morala vedeti, preden poiščemo konkretne službe?</span><span class="lang-en">Anything else I should know before we search for concrete jobs?</span></div><textarea id="q5_5"></textarea></div>
+<div class="box good">
+<h4>3. <span class="lang-sl">Pri živalih: pokliči, ne čakaj oglasa</span><span class="lang-en">With animals: call, don't wait for an ad</span></h4>
+<span class="lang-sl">Konjušnice, pasji hoteli in zavetišča so majhni in pogosto sploh ne oglašujejo. Pokliči in ponudi <b>poskusni dan</b>. Tvoje izkušnje trenerke jahanja so tam veliko vredne.</span><span class="lang-en">Stables, dog hotels and shelters are small and often don't advertise. Call and offer a <b>trial day</b>. Your riding-trainer experience is worth a lot there.</span>
 </div>
 
-<div class="stats" id="stats">0 / 23 odgovorjenih</div>
-<div class="footer-note"><span class="lang-sl">Vzemi si čas. To je tvoja pot. &#128150;</span><span class="lang-en">Take your time. This is your path. &#128150;</span></div>
+<div class="box good">
+<h4>4. <span class="lang-sl">Certifikat: oskrbnica hišnih živali</span><span class="lang-en">Certificate: pet caretaker</span></h4>
+<span class="lang-sl">Pasji hoteli in trgovine z živalmi <b>po zakonu</b> potrebujejo osebje s tem usposabljanjem. Tečaj stane <b>99 €</b>, v Šentjurju ali <b>online</b>.</span><span class="lang-en">Dog hotels and pet shops are <b>legally required</b> to have staff with this training. The course costs <b>€99</b>, in Šentjur or <b>online</b>.</span>
+<div class="links"><a href="https://razpis.si/usposabljanje-za-oskrbnike-hisnih-zivali/" target="_blank">&#8599; razpis.si</a></div>
+<div class="contact"><b>041 798 731</b> · info@razpis.si</div>
+</div>
+
+<div class="q" data-q="would_try" data-type="multi">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Kaj od tega bi poskusila?</span><span class="lang-en">Which of these would you try?</span></div>
+<div class="opts">
+<label class="opt"><input type="checkbox" value="call_agency"><span class="chip"><span class="lang-sl">Poklicati agencijo</span><span class="lang-en">Call an agency</span></span></label>
+<label class="opt"><input type="checkbox" value="career_centre"><span class="chip"><span class="lang-sl">Karierno središče (CV)</span><span class="lang-en">Career centre (CV help)</span></span></label>
+<label class="opt"><input type="checkbox" value="course"><span class="chip"><span class="lang-sl">Tečaj za oskrbnico (99 €)</span><span class="lang-en">Pet caretaker course (€99)</span></span></label>
+<label class="opt"><input type="checkbox" value="trial_day"><span class="chip"><span class="lang-sl">Poskusni dan pri živalih</span><span class="lang-en">Trial day with animals</span></span></label>
+<label class="opt"><input type="checkbox" value="cv_together"><span class="chip"><span class="lang-sl">Da skupaj napiševa CV</span><span class="lang-en">Writing my CV together with you</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<h2 class="section-title" id="portali">&#128269; <span class="lang-sl">Kje iskati (vse regije)</span><span class="lang-en">Where to search (all regions)</span></h2>
+<div class="section-sub"><span class="lang-sl">Nastavi si obvestila po e-pošti — potem ti ni treba vsak dan preverjati.</span><span class="lang-en">Set up email alerts — then you don't have to check every day.</span></div>
+
+<div class="card">
+<ul>
+<li><a href="https://www.ess.gov.si/iskalci-zaposlitve/" target="_blank">ess.gov.si</a> — <span class="lang-sl">državni portal, tudi sezonska dela</span><span class="lang-en">government portal, incl. seasonal work</span></li>
+<li><a href="https://www.mojedelo.com/iskanje-zaposlitve" target="_blank">MojeDelo.com</a> — <span class="lang-sl">največji portal</span><span class="lang-en">largest portal</span></li>
+<li><a href="https://www.kariera.si/sl/delovna-mesta" target="_blank">Kariera.si</a> — <span class="lang-sl">veliko »lažjih proizvodnih del«</span><span class="lang-en">lots of "light production work"</span> · <b>01 300 31 00</b></li>
+<li><a href="https://www.optius.com/" target="_blank">Optius.com</a></li>
+<li><a href="https://www.bolha.com/" target="_blank">Bolha.com</a> — <span class="lang-sl">zaposlitve + tvoj lasten oglas</span><span class="lang-en">jobs + your own ad</span></li>
+<li><a href="https://si.trenkwalder.com/" target="_blank">Trenkwalder</a> · <a href="https://www.manpower.si/sl/delovna-mesta" target="_blank">Manpower</a> · Adecco — <span class="lang-sl">agencije</span><span class="lang-en">agencies</span></li>
+</ul>
+</div>
+
+<div class="q" data-q="licence" data-type="single">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Vozniški izpit in avto?</span><span class="lang-en">Driver's licence and car?</span></div>
+<div class="q-hint"><span class="lang-sl">Veliko del z živalmi zahteva izpit B — zato vprašam.</span><span class="lang-en">Many animal jobs require licence B — that's why I ask.</span></div>
+<div class="opts">
+<label class="opt"><input type="radio" name="licence" value="licence_car"><span class="chip"><span class="lang-sl">Izpit in avto</span><span class="lang-en">Licence and car</span></span></label>
+<label class="opt"><input type="radio" name="licence" value="licence_only"><span class="chip"><span class="lang-sl">Izpit, avta ne</span><span class="lang-en">Licence, no car</span></span></label>
+<label class="opt"><input type="radio" name="licence" value="none"><span class="chip"><span class="lang-sl">Nimam izpita</span><span class="lang-en">No licence</span></span></label>
+<label class="opt"><input type="radio" name="licence" value="in_progress"><span class="chip"><span class="lang-sl">Ga ravno delam</span><span class="lang-en">Working on it</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<!-- ================= ZIVALI ================= -->
+<h2 class="section-title" id="zivali">&#128054; <span class="lang-sl">Varstvo živali — trg obstaja</span><span class="lang-en">Pet sitting — the market is real</span></h2>
+<div class="section-sub"><span class="lang-sl">Resnični ceniki ljudi, ki to že delajo. Toliko lahko zaračunaš tudi ti.</span><span class="lang-en">Real price lists of people already doing this. You can charge the same.</span></div>
+
+<div class="card">
+<h3><span class="lang-sl">Kaj zaračunavajo drugi (Ljubljana, 2026)</span><span class="lang-en">What others charge (Ljubljana, 2026)</span></h3>
+<table>
+<tr><td><a href="https://www.mojlordek.si/" target="_blank">Moj Lordek</a> — <span class="lang-sl">30-min sprehod</span><span class="lang-en">30-min walk</span></td><td>8 €</td></tr>
+<tr><td><a href="https://lomospela.wixsite.com/isak/copy-of-happy-ku%C5%BEki" target="_blank">isak</a> — <span class="lang-sl">sprehod / varstvo do 7 ur</span><span class="lang-en">walk / care up to 7 h</span></td><td>8 € / 15 €</td></tr>
+<tr><td><a href="https://www.sprehajanjepsov.si/" target="_blank">sprehajanjepsov.si</a> — <span class="lang-sl">sprehod</span><span class="lang-en">walk</span></td><td>20 €</td></tr>
+<tr><td><a href="https://www.hors.si/cenik" target="_blank">Hors</a> — <span class="lang-sl">dnevno / z nočitvijo</span><span class="lang-en">day / overnight</span></td><td>25 € / 30 €</td></tr>
+<tr><td><a href="https://www.pasjivrtec.si/" target="_blank">Pasji vrtec</a> — <span class="lang-sl">vrtec / hotel</span><span class="lang-en">daycare / hotel</span></td><td><span class="lang-sl">od</span><span class="lang-en">from</span> 10 € / 20 €</td></tr>
+</table>
+</div>
+
+<div class="q" data-q="animal_jobs" data-type="multi">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Katera dela z živalmi bi res delala?</span><span class="lang-en">Which animal jobs would you really do?</span></div>
+<div class="q-hint"><span class="lang-sl">Tapni vse, ob katerih se ti zasvetijo oči. &#128049;</span><span class="lang-en">Tap everything that makes your eyes light up. &#128049;</span></div>
+<div class="opts">
+<label class="opt"><input type="checkbox" value="dog_walks"><span class="chip">&#128021; <span class="lang-sl">Sprehajanje psov</span><span class="lang-en">Dog walks</span></span></label>
+<label class="opt"><input type="checkbox" value="cat_visits"><span class="chip">&#128008; <span class="lang-sl">Obiski mačk na domu</span><span class="lang-en">Cat visits at home</span></span></label>
+<label class="opt"><input type="checkbox" value="overnight_owner"><span class="chip">&#127769; <span class="lang-sl">Nočitev pri lastniku</span><span class="lang-en">Overnight at owner's home</span></span></label>
+<label class="opt"><input type="checkbox" value="dogs_at_mine"><span class="chip">&#127969; <span class="lang-sl">Psi pri meni doma</span><span class="lang-en">Dogs at my place</span></span></label>
+<label class="opt"><input type="checkbox" value="horses"><span class="chip">&#128052; <span class="lang-sl">Oskrba konj</span><span class="lang-en">Horse care</span></span></label>
+<label class="opt"><input type="checkbox" value="shelter"><span class="chip">&#127968; <span class="lang-sl">Zavetišče</span><span class="lang-en">Animal shelter</span></span></label>
+<label class="opt"><input type="checkbox" value="vet"><span class="chip">&#129658; <span class="lang-sl">Pomoč na veterini</span><span class="lang-en">Vet clinic assistant</span></span></label>
+<label class="opt"><input type="checkbox" value="dog_hotel"><span class="chip">&#127976; <span class="lang-sl">Pasji hotel / vrtec</span><span class="lang-en">Dog hotel / daycare</span></span></label>
+<label class="opt"><input type="checkbox" value="pet_shop"><span class="chip">&#128717;&#65039; <span class="lang-sl">Trgovina z živalmi</span><span class="lang-en">Pet shop</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<div class="card">
+<h3><span class="lang-sl">Primer oglasa, ki ga lahko posnemaš</span><span class="lang-en">An example ad you can copy</span></h3>
+<p><span class="lang-sl">Na Bolhi nekdo iz Radovljice ponuja: »V času vaše odsotnosti nudim varstvo, hranjenje in sprehajanje vaših ljubljenčkov« — z naštetimi kraji. Tako preprosto je.</span><span class="lang-en">On Bolha someone from Radovljica offers: "While you're away I provide care, feeding and walks for your pets" — listing nearby towns. It's that simple.</span></p>
+<div class="links"><a href="https://www.bolha.com/zivali-ostalo/varstvo-in-sprehajanje-zivali-oglas-16070732" target="_blank">&#8599; <span class="lang-sl">Poglej oglas</span><span class="lang-en">See the ad</span></a> <a href="https://bestbuddy.si/o-nas" target="_blank">&#8599; Best Buddy — <span class="lang-sl">slovenska aplikacija za varuhe</span><span class="lang-en">Slovenian pet-sitter app</span></a></div>
+</div>
+
+<div class="q" data-q="own_ad" data-type="single">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Bi objavila svoj oglas za varstvo živali?</span><span class="lang-en">Would you post your own pet-sitting ad?</span></div>
+<div class="opts">
+<label class="opt"><input type="radio" name="own_ad" value="yes_help"><span class="chip"><span class="lang-sl">Da — pomagaj mi ga napisati</span><span class="lang-en">Yes — help me write it</span></span></label>
+<label class="opt"><input type="radio" name="own_ad" value="maybe_scared"><span class="chip"><span class="lang-sl">Mogoče, a me je malo strah</span><span class="lang-en">Maybe, but I'm a bit scared</span></span></label>
+<label class="opt"><input type="radio" name="own_ad" value="app"><span class="chip"><span class="lang-sl">Raje prek aplikacije</span><span class="lang-en">Rather through an app</span></span></label>
+<label class="opt"><input type="radio" name="own_ad" value="no"><span class="chip"><span class="lang-sl">Ne, to ni zame</span><span class="lang-en">No, not for me</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<div class="box info">
+<h4>&#9989; <span class="lang-sl">Legalno in preprosto: osebno dopolnilno delo (ODD)</span><span class="lang-en">Legal and simple: supplementary personal work (ODD)</span></h4>
+<ul>
+<li><span class="lang-sl"><b>»Občasna pomoč pri oskrbi hišnih živali na domu lastnika«</b> je uradno na seznamu (A7), prav tako čiščenje stanovanj (A1).</span><span class="lang-en"><b>"Occasional pet care at the owner's home"</b> is officially on the list (A7), as is home cleaning (A1).</span></li>
+<li><span class="lang-sl">Enkrat se priglasiš pri <b>AJPES</b>. Vrednotnico (<b>13,73 €</b> na mesec) kupi <b>stranka</b>, ne ti.</span><span class="lang-en">You register once with <b>AJPES</b>. The voucher (<b>€13.73</b>/month) is bought by the <b>client</b>, not you.</span></li>
+<li><span class="lang-sl">Meja: približno <b>4.700 € na pol leta</b>.</span><span class="lang-en">Limit: roughly <b>€4,700 per half-year</b>.</span></li>
+</ul>
+<div class="links"><a href="https://e-uprava.gov.si/podrocja/delo-upokojitev/delo/osebno-dopolnilno-delo.html" target="_blank">&#8599; eUprava</a><a href="https://www.ajpes.si/registri/drugi_registri/osebno_dopolnilno_delo" target="_blank">&#8599; AJPES</a></div>
+</div>
+
+<!-- ================= REGIJE ================= -->
+<h2 class="section-title" id="regije">&#128205; <span class="lang-sl">Po regijah</span><span class="lang-en">By region</span></h2>
+
+<div class="q" data-q="region" data-type="single">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Kateri regiji si najbližje?</span><span class="lang-en">Which region are you closest to?</span></div>
+<div class="q-hint"><span class="lang-sl">Samo približno — dovolj, da iščem v pravi smeri.</span><span class="lang-en">Just roughly — enough so I search in the right area.</span></div>
+<div class="opts">
+<label class="opt"><input type="radio" name="region" value="ljubljana"><span class="chip">Ljubljana</span></label>
+<label class="opt"><input type="radio" name="region" value="gorenjska"><span class="chip">Gorenjska</span></label>
+<label class="opt"><input type="radio" name="region" value="stajerska"><span class="chip"><span class="lang-sl">Štajerska / Maribor</span><span class="lang-en">Štajerska / Maribor</span></span></label>
+<label class="opt"><input type="radio" name="region" value="savinjska"><span class="chip"><span class="lang-sl">Savinjska / Celje</span><span class="lang-en">Savinjska / Celje</span></span></label>
+<label class="opt"><input type="radio" name="region" value="obala"><span class="chip"><span class="lang-sl">Obala / Primorska</span><span class="lang-en">Coast / Primorska</span></span></label>
+<label class="opt"><input type="radio" name="region" value="dolenjska"><span class="chip">Dolenjska</span></label>
+<label class="opt"><input type="radio" name="region" value="pomurje"><span class="chip">Pomurje</span></label>
+<label class="opt"><input type="radio" name="region" value="koroska"><span class="chip">Koroška</span></label>
+<label class="opt"><input type="radio" name="region" value="rather_not"><span class="chip"><span class="lang-sl">Raje ne povem</span><span class="lang-en">Rather not say</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<h2 class="section-title" id="lj">&#127983; <span class="lang-sl">Ljubljana in okolica</span><span class="lang-en">Ljubljana area</span></h2>
+
+<div class="card">
+<div class="meta"><span class="tag example"><span class="lang-sl">objavljeno april 2026 — pokliči in vprašaj</span><span class="lang-en">posted April 2026 — call and ask</span></span><span class="tag">&#128052;</span></div>
+<h3><span class="lang-sl">Hlevarka — Posestvo Jurečič / Konjeništvo Peterlin</span><span class="lang-en">Stable hand — Posestvo Jurečič / Konjeništvo Peterlin</span></h3>
+<p><span class="lang-sl">Oskrba ~25 konj, vedno v paru. Približno 6:00/7:00–13:00/14:00. <b>Koliko dni na teden, izbiraš sama.</b> Mestni avtobus 19B.</span><span class="lang-en">Caring for ~25 horses, always in pairs. Roughly 6/7am–1/2pm. <b>You choose how many days a week.</b> City bus 19B.</span></p>
+<div class="contact"><span class="lang-sl">Simon:</span><span class="lang-en">Simon:</span> <b>041 266 797</b> · konjenistvo.peterlin@gmail.com · Lipe 15</div>
+<div class="links"><a href="https://www.konjenistvo-peterlin.si/2026/04/14/iscemo-hlevarja/" target="_blank">&#8599; <span class="lang-sl">Oglas</span><span class="lang-en">Ad</span></a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag example"><span class="lang-sl">objavljeno 28. 8. 2026</span><span class="lang-en">posted 28 Aug 2026</span></span><span class="tag money"><span class="lang-sl">od 1.500 € neto</span><span class="lang-en">from €1,500 net</span></span></div>
+<h3><span class="lang-sl">Čiščenje apartmajev — CAPINVESTMENT INT</span><span class="lang-en">Apartment cleaning — CAPINVESTMENT INT</span></h3>
+<p><span class="lang-sl">Ekipa štirih punc, <b>delovni čas po dogovoru</b>, za nedoločen čas.</span><span class="lang-en">A team of four women, <b>hours by arrangement</b>, permanent contract.</span></p>
+<div class="links"><a href="https://www.mojedelo.com/oglas/cistilka-sobarica-mz-ljubljana/407a1075-4271-46a9-9696-faa970ec6a21" target="_blank">&#8599; MojeDelo.com</a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag">&#128052; <span class="lang-sl">referenca</span><span class="lang-en">reference</span></span></div>
+<h3><span class="lang-sl">Prostovoljstvo s konji — PRC Krumperk (Domžale)</span><span class="lang-en">Volunteering with horses — PRC Krumperk (Domžale)</span></h3>
+<p><span class="lang-sl">Neplačano, a odlična sveža referenca za CV. ~3–4 ure, tudi ob vikendih. Potreben izpit B.</span><span class="lang-en">Unpaid, but a great fresh CV reference. ~3–4 h, weekends too. Licence B needed.</span></p>
+<div class="links"><a href="https://domzalec.si/novice/obvestila/iscemo-prostovoljce-za-oskrbo-konj-na-krumperku/" target="_blank">&#8599; domžalec.si</a></div>
+</div>
+
+<h2 class="section-title" id="gor">&#9968;&#65039; Gorenjska</h2>
+
+<div class="card">
+<div class="meta"><span class="tag example"><span class="lang-sl">september 2026</span><span class="lang-en">September 2026</span></span></div>
+<h3><span class="lang-sl">Lažja proizvodna dela v Kranju — Kariera</span><span class="lang-en">Light production work in Kranj — Kariera</span></h3>
+<p><span class="lang-sl">Stalno več oglasov: »lažja proizvodna dela«, »skladiščnik – prosti vikendi«. Čista proizvodnja, brez pritiskov, natančnost je pomembna.</span><span class="lang-en">Constantly several ads: "light production work", "warehouse – weekends off". Clean, no pressure, precision valued.</span></p>
+<div class="contact"><b>01 300 31 00</b> · zaposlitev@kariera.si</div>
+<div class="links"><a href="https://www.kariera.si/sl/delovna-mesta" target="_blank">&#8599; Kariera.si</a> <a href="https://www.manpower.si/sl/delovna-mesta" target="_blank">&#8599; Manpower (Kranj / Brnik)</a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag open"><span class="lang-sl">odprto do 26. 10. 2026</span><span class="lang-en">open until 26 Oct 2026</span></span></div>
+<h3><span class="lang-sl">Operaterka pakiranja — Knauf Insulation, Škofja Loka</span><span class="lang-en">Packing operator — Knauf Insulation, Škofja Loka</span></h3>
+<p><span class="lang-sl">Kontrola in sortiranje izdelkov. 4 izmene. Zaželene izkušnje.</span><span class="lang-en">Checking and sorting products. 4 shifts. Experience preferred.</span></p>
+<div class="links"><a href="https://knaufinsulationsystemsdivision.teamtailor.com/jobs/8450386-operater-ka-pakiranja-m-z-4-izmensko" target="_blank">&#8599; <span class="lang-sl">Oglas</span><span class="lang-en">Ad</span></a></div>
+</div>
+
+<h2 class="section-title" id="stajer">&#127815; <span class="lang-sl">Štajerska, Savinjska, Podravje</span><span class="lang-en">Styria, Savinja, Podravje</span></h2>
+
+<div class="card">
+<div class="meta"><span class="tag open"><span class="lang-sl">objavljeno 18. 9. 2026</span><span class="lang-en">posted 18 Sep 2026</span></span><span class="tag"><span class="lang-sl">brez izkušenj</span><span class="lang-en">no experience</span></span></div>
+<h3><span class="lang-sl">Proizvodnja — Trenkwalder, Žalec / okolica Celja</span><span class="lang-en">Production — Trenkwalder, Žalec / Celje area</span></h3>
+<p><span class="lang-sl">Sestavljanje, pakiranje, kontrola. Mentor ob uvajanju, prehrana 7,96 €/dan, prevoz 0,21 €/km.</span><span class="lang-en">Assembly, packing, checks. Mentor at the start, meals €7.96/day, travel €0.21/km.</span></p>
+<div class="contact">Kristina Vasiljević: <b>030 210 091</b> · <b>03 42 56 392</b></div>
+<div class="links"><a href="https://si.trenkwalder.com/jobs/a0tbI00000Y1JcxQAF" target="_blank">&#8599; Žalec</a><a href="https://si.trenkwalder.com/en-SI/jobs/a0t6N000009OE0IQAW" target="_blank">&#8599; Celje</a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag open"><span class="lang-sl">sezona do konca oktobra</span><span class="lang-en">season until end of October</span></span><span class="tag money"><span class="lang-sl">min. 8,52 € bruto/uro</span><span class="lang-en">min. €8.52 gross/h</span></span></div>
+<h3><span class="lang-sl">Obiranje jabolk — zdaj, brez razgovora</span><span class="lang-en">Apple picking — now, no interview</span></h3>
+<ul>
+<li><b>Sadjarstvo Slom</b> — <span class="lang-sl">Zreče, Loče, Slov. Bistrica, Ptuj, Limbuš, do 20. 10.</span><span class="lang-en">Zreče, Loče, Slov. Bistrica, Ptuj, Limbuš, until 20 Oct</span> · <b>031 610 514</b></li>
+<li><b>KZ Selnica ob Dravi</b> — <span class="lang-sl">do 31. 10.</span><span class="lang-en">until 31 Oct</span> · <b>041 770 465</b></li>
+<li><b>Meja Šentjur</b> — <span class="lang-sl">lažje delo, do 30. 10.</span><span class="lang-en">lighter work, until 30 Oct</span> · <b>03 747 1 500</b></li>
+<li><b>Kmetija Lipoglav</b> — <span class="lang-sl">25.–30. 10.</span><span class="lang-en">25–30 Oct</span> · <b>051 345 853</b></li>
+</ul>
+<div class="links"><a href="https://www.ess.gov.si/fileadmin/user_upload/Novice/Novice_IZ/Novice_IZ_Dokumenti/Sezonska_dela_v_kmetijstvu_2026.pdf" target="_blank">&#8599; <span class="lang-sl">Zavod PDF (vse regije)</span><span class="lang-en">Service PDF (all regions)</span></a></div>
+</div>
+
+<h2 class="section-title" id="obala">&#127754; <span class="lang-sl">Obala in Primorska</span><span class="lang-en">Coast & Primorska</span></h2>
+
+<div class="card">
+<div class="meta"><span class="tag open"><span class="lang-sl">ROK: 30. 9. 2026 — pohiti!</span><span class="lang-en">DEADLINE: 30 Sep 2026 — hurry!</span></span><span class="tag"><span class="lang-sl">izkušnje niso potrebne</span><span class="lang-en">no experience needed</span></span></div>
+<h3><span class="lang-sl">Veterinarska tehnica — Tačka, Koper</span><span class="lang-en">Vet technician — Tačka, Koper</span></h3>
+<p><span class="lang-sl">Oskrba živali, pomoč veterinarjem, delno recepcija in trgovina. Nedoločen čas, gibljiv urnik, izpit B. Tačka ima 13 lokacij — CV se splača poslati tudi za kasneje.</span><span class="lang-en">Animal care, assisting vets, partly reception and shop. Permanent, flexible hours, licence B. Tačka has 13 locations — worth sending a CV for later too.</span></p>
+<div class="contact">marko.trobec@tacka-veterina.si · <b>08 202 0160</b></div>
+<div class="links"><a href="https://tacka-veterina.si/zaposlujemo-2/" target="_blank">&#8599; Tačka</a></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag example"><span class="lang-sl">zaposlujejo občasno</span><span class="lang-en">hire periodically</span></span></div>
+<h3><span class="lang-sl">Oskrbnica v zavetišču — Marjetica Koper</span><span class="lang-en">Shelter caretaker — Marjetica Koper</span></h3>
+<p><span class="lang-sl">Zadnjič 2 mesti <b>brez zahtevanih izkušenj</b>. Pogoj: izpit B, osnovna italijanščina.</span><span class="lang-en">Last time 2 positions <b>with no experience required</b>. Requires licence B, basic Italian.</span></p>
+<div class="contact">kadrovska@marjeticakoper.si · <b>05 66 33 705</b></div>
+</div>
+
+<div class="card">
+<div class="meta"><span class="tag example"><span class="lang-sl">redni zaposlovalec</span><span class="lang-en">hires regularly</span></span></div>
+<h3><span class="lang-sl">Veterinarska tehnica — Veterina Gorica, Nova Gorica</span><span class="lang-en">Vet technician — Veterina Gorica, Nova Gorica</span></h3>
+<div class="contact">veterinago@siol.net · <b>05 33 05 380</b></div>
+</div>
+
+<div class="q" data-q="offers_liked" data-type="multi">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Katere ponudbe so ti padle v oči?</span><span class="lang-en">Which offers caught your eye?</span></div>
+<div class="q-hint"><span class="lang-sl">Tudi če niso v tvoji regiji — gre za vrsto dela.</span><span class="lang-en">Even if not in your region — it's about the type of work.</span></div>
+<div class="opts">
+<label class="opt"><input type="checkbox" value="vet_tech"><span class="chip"><span class="lang-sl">Veterinarska tehnica</span><span class="lang-en">Vet technician</span></span></label>
+<label class="opt"><input type="checkbox" value="stable_hand"><span class="chip"><span class="lang-sl">Hlevarka pri konjih</span><span class="lang-en">Stable hand</span></span></label>
+<label class="opt"><input type="checkbox" value="shelter_job"><span class="chip"><span class="lang-sl">Zavetišče</span><span class="lang-en">Shelter</span></span></label>
+<label class="opt"><input type="checkbox" value="apartments"><span class="chip"><span class="lang-sl">Čiščenje apartmajev</span><span class="lang-en">Apartment cleaning</span></span></label>
+<label class="opt"><input type="checkbox" value="production"><span class="chip"><span class="lang-sl">Pakiranje / lažja proizvodnja</span><span class="lang-en">Packing / light production</span></span></label>
+<label class="opt"><input type="checkbox" value="apples"><span class="chip"><span class="lang-sl">Obiranje jabolk</span><span class="lang-en">Apple picking</span></span></label>
+<label class="opt"><input type="checkbox" value="volunteer_horses"><span class="chip"><span class="lang-sl">Prostovoljstvo s konji</span><span class="lang-en">Volunteering with horses</span></span></label>
+<label class="opt"><input type="checkbox" value="none_yet"><span class="chip"><span class="lang-sl">Nič od tega</span><span class="lang-en">None of these</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<div class="q" data-q="turn_offs" data-type="multi">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Kaj te pri teh oglasih odbija?</span><span class="lang-en">What puts you off in these ads?</span></div>
+<div class="opts">
+<label class="opt"><input type="checkbox" value="shifts"><span class="chip"><span class="lang-sl">Izmensko delo</span><span class="lang-en">Shift work</span></span></label>
+<label class="opt"><input type="checkbox" value="early"><span class="chip"><span class="lang-sl">Zgodnje ure</span><span class="lang-en">Early hours</span></span></label>
+<label class="opt"><input type="checkbox" value="outdoor_weather"><span class="chip"><span class="lang-sl">Zunaj v vsakem vremenu</span><span class="lang-en">Outdoors in any weather</span></span></label>
+<label class="opt"><input type="checkbox" value="customers"><span class="chip"><span class="lang-sl">Recepcija / stranke</span><span class="lang-en">Reception / customers</span></span></label>
+<label class="opt"><input type="checkbox" value="too_far"><span class="chip"><span class="lang-sl">Predaleč</span><span class="lang-en">Too far</span></span></label>
+<label class="opt"><input type="checkbox" value="low_pay"><span class="chip"><span class="lang-sl">Premalo plačano</span><span class="lang-en">Too little pay</span></span></label>
+<label class="opt"><input type="checkbox" value="requirements"><span class="chip"><span class="lang-sl">Pogoji (izpit, jezik, izkušnje)</span><span class="lang-en">Requirements (licence, language, experience)</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<!-- ================= VSEPOVSOD ================= -->
+<h2 class="section-title" id="vsepovsod">&#127758; <span class="lang-sl">V več mestih ali od doma</span><span class="lang-en">In many towns or from home</span></h2>
+
+<div class="card">
+<div class="meta"><span class="tag money"><span class="lang-sl">Wolt navaja 10–12 € bruto/uro povprečno</span><span class="lang-en">Wolt states €10–12 gross/h average</span></span></div>
+<h3>&#128690; <span class="lang-sl">Dostava Wolt — Ljubljana, Maribor, Celje, Koper, Kranj …</span><span class="lang-en">Wolt delivery — Ljubljana, Maribor, Celje, Koper, Kranj …</span></h3>
+<p><span class="lang-sl">Delaš, kadar hočeš, izplačila tedensko, stik s strankami samo nekaj sekund. <b>Pogoj: popoldanski s.p.</b> V slabih urah lahko pod 8 €/uro, stroške vozila nosiš sama.</span><span class="lang-en">Work when you want, paid weekly, customer contact just seconds. <b>Requires popoldanski s.p. (after-hours sole proprietorship).</b> Can drop below €8/h in slow hours; vehicle costs are yours.</span></p>
+<div class="links"><a href="https://explore.wolt.com/sl/svn/couriers" target="_blank">&#8599; Wolt</a><a href="https://zasluzek.si/koliko-zasluzi-wolt-dostavljalec-v-sloveniji/" target="_blank">&#8599; <span class="lang-sl">Realni zaslužki</span><span class="lang-en">Real earnings</span></a></div>
+</div>
+
+<div class="card">
+<h3>&#128203; <span class="lang-sl">Prolific — plačane univerzitetne ankete</span><span class="lang-en">Prolific — paid university surveys</span></h3>
+<p><span class="lang-sl">Slovenija je na uradnem seznamu. Potrebuješ osebni dokument, telefonsko številko in angleščino. Malo denarja, a z mucko na kavču. &#128049;</span><span class="lang-en">Slovenia is on the official list. You need an ID, a phone number and English. Small money, but with your kitty on the sofa. &#128049;</span></p>
+<div class="links"><a href="https://participant-help.prolific.com/en/articles/445007-who-can-participate-in-studies-on-prolific" target="_blank">&#8599; Prolific</a></div>
+</div>
+
+<div class="q" data-q="from_home" data-type="multi">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Kaj od doma ali »mobilnega« te mika?</span><span class="lang-en">Which home or "on the go" options tempt you?</span></div>
+<div class="opts">
+<label class="opt"><input type="checkbox" value="wolt"><span class="chip">&#128690; Wolt</span></label>
+<label class="opt"><input type="checkbox" value="prolific"><span class="chip">&#128203; Prolific</span></label>
+<label class="opt"><input type="checkbox" value="coloring"><span class="chip">&#127912; <span class="lang-sl">Barvanje po naročilu (mandale, portreti živali)</span><span class="lang-en">Colouring to order (mandalas, pet portraits)</span></span></label>
+<label class="opt"><input type="checkbox" value="selling"><span class="chip">&#128230; <span class="lang-sl">Prodaja stvari (Vinted, Bolha)</span><span class="lang-en">Selling things (Vinted, Bolha)</span></span></label>
+<label class="opt"><input type="checkbox" value="none"><span class="chip"><span class="lang-sl">Nič od tega</span><span class="lang-en">None of these</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<div class="q" data-q="side_or_switch" data-type="single">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Kaj bi ti bolj pomagalo?</span><span class="lang-en">What would help you more?</span></div>
+<div class="opts">
+<label class="opt"><input type="radio" name="side_or_switch" value="side_job"><span class="chip"><span class="lang-sl">Dodatno delo poleg McDonald'sa</span><span class="lang-en">A side job next to McDonald's</span></span></label>
+<label class="opt"><input type="radio" name="side_or_switch" value="better_main_job"><span class="chip"><span class="lang-sl">Boljša redna služba namesto McDonald'sa</span><span class="lang-en">A better main job instead of McDonald's</span></span></label>
+<label class="opt"><input type="radio" name="side_or_switch" value="both"><span class="chip"><span class="lang-sl">Najprej dodatno, potem menjava</span><span class="lang-en">Side job first, then switch</span></span></label>
+<label class="opt"><input type="radio" name="side_or_switch" value="unsure"><span class="chip"><span class="lang-sl">Še ne vem</span><span class="lang-en">Not sure yet</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<div class="q" data-q="time" data-type="single">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Koliko časa na teden imaš realno za dodatno delo?</span><span class="lang-en">How much time per week do you realistically have for extra work?</span></div>
+<div class="q-hint"><span class="lang-sl">Spodaj lahko napišeš, kateri dnevi ali ure ti ustrezajo.</span><span class="lang-en">Below you can write which days or hours suit you.</span></div>
+<div class="opts">
+<label class="opt"><input type="radio" name="time" value="lt5"><span class="chip"><span class="lang-sl">Manj kot 5 ur</span><span class="lang-en">Less than 5 h</span></span></label>
+<label class="opt"><input type="radio" name="time" value="5_10"><span class="chip">5–10 h</span></label>
+<label class="opt"><input type="radio" name="time" value="10_15"><span class="chip">10–15 h</span></label>
+<label class="opt"><input type="radio" name="time" value="gt15"><span class="chip"><span class="lang-sl">Več kot 15 ur</span><span class="lang-en">More than 15 h</span></span></label>
+<label class="opt"><input type="radio" name="time" value="free_days"><span class="chip"><span class="lang-sl">Samo na proste dni</span><span class="lang-en">Only on days off</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<div class="card">
+<h3>&#129518; <span class="lang-sl">Primer realnega meseca</span><span class="lang-en">Example month</span></h3>
+<table>
+<tr><td><span class="lang-sl">4 sprehodi psov na teden × 8 €</span><span class="lang-en">4 dog walks per week × €8</span></td><td>~130 €</td></tr>
+<tr><td><span class="lang-sl">2 vikenda z nočitvijo (2 × 2 × 30 €)</span><span class="lang-en">2 overnight weekends (2 × 2 × €30)</span></td><td>~120 €</td></tr>
+<tr><td><span class="lang-sl">4 sobote na obiranju jabolk (8 h × 8,52 €)</span><span class="lang-en">4 Saturdays picking apples (8 h × €8.52)</span></td><td>~270 € <span class="lang-sl">bruto</span><span class="lang-en">gross</span></td></tr>
+</table>
+<p style="margin-top:8px;font-size:.8rem;color:var(--muted)"><span class="lang-sl">Ni čudež — a je stabilno, legalno in brez strahu.</span><span class="lang-en">Not a miracle — but stable, legal and without fear.</span></p>
+</div>
+
+<!-- ================= KREDIT ================= -->
+<h2 class="section-title" id="kredit">&#127968; <span class="lang-sl">Če je obrok kredita pretežak</span><span class="lang-en">If the mortgage payment is too heavy</span></h2>
+<div class="section-sub"><span class="lang-sl">Včasih je najhitrejši »dodatni zaslužek« nižji obrok.</span><span class="lang-en">Sometimes the fastest "extra income" is a lower monthly payment.</span></div>
+
+<div class="box info">
+<h4>&#127974; <span class="lang-sl">Pogovor z banko — PREJ, ne potem</span><span class="lang-en">Talk to the bank — BEFORE, not after</span></h4>
+<ul>
+<li><span class="lang-sl">Banke same pozivajo, naj se oglasiš <b>čim prej</b>. Možnosti: <b>moratorij</b> (odlog plačil), <b>reprogram</b>, <b>podaljšanje ročnosti</b> (nižji obrok) ali refinanciranje.</span><span class="lang-en">Banks ask you to come <b>as early as possible</b>. Options: <b>moratorium</b> (payment pause), <b>rescheduling</b>, <b>longer term</b> (lower payment) or refinancing.</span></li>
+<li><span class="lang-sl">Pri zamudi z <b>dvema zaporednima obrokoma</b> lahko banka odstopi od pogodbe — zato je bolje iti na pogovor prej.</span><span class="lang-en">After <b>two consecutive missed payments</b> the bank can terminate the contract — so it's better to talk early.</span></li>
+</ul>
+<div class="links"><a href="https://cekin.si/finance/krediti/izguba-sluzbe-med-odplacevanjem-kredita.html" target="_blank">&#8599; Cekin.si</a><a href="https://www.zps.si/aktualne-vsebine/odgovori-na-vprasanja-potrosnikov/redna-placila-kreditnih-obrokov-jemljite-resno-2025-07-31" target="_blank">&#8599; ZPS</a></div>
+</div>
+
+<div class="box good">
+<h4>&#129309; SOS dolgovi — <span class="lang-sl">brezplačna pomoč</span><span class="lang-en">free help</span></h4>
+<span class="lang-sl">Pomoč pri proračunu, dolgovih in papirjih, tudi za zaposlene. <b>V celoti brezplačno.</b></span><span class="lang-en">Help with budget, debts and paperwork, also for employed people. <b>Completely free.</b></span>
+<div class="contact"><span class="lang-sl">pon–pet 7–15h:</span><span class="lang-en">Mon–Fri 7am–3pm:</span> <b>040 200 030</b> · prelomi@siol.net</div>
+<div class="links"><a href="https://www.prelomi.si/programi/sos-dolgovi/" target="_blank">&#8599; prelomi.si</a></div>
+</div>
+
+<div class="q" data-q="relief_amount" data-type="single">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Koliko dodatnega denarja na mesec bi ti dalo občutek olajšanja?</span><span class="lang-en">How much extra money per month would make you feel relieved?</span></div>
+<div class="q-hint"><span class="lang-sl">Neobvezno — samo da veva, kako velik cilj iščeva.</span><span class="lang-en">Optional — just so we know how big the goal is.</span></div>
+<div class="opts">
+<label class="opt"><input type="radio" name="relief_amount" value="200"><span class="chip">~200 €</span></label>
+<label class="opt"><input type="radio" name="relief_amount" value="400"><span class="chip">~400 €</span></label>
+<label class="opt"><input type="radio" name="relief_amount" value="600"><span class="chip">~600 €</span></label>
+<label class="opt"><input type="radio" name="relief_amount" value="800plus"><span class="chip">800 €+</span></label>
+<label class="opt"><input type="radio" name="relief_amount" value="rather_not"><span class="chip"><span class="lang-sl">Raje ne povem</span><span class="lang-en">Rather not say</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<div class="q" data-q="bank_talk" data-type="single">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Pogovor z banko ali SOS dolgovi — kaj praviš?</span><span class="lang-en">Talking to the bank or SOS dolgovi — what do you think?</span></div>
+<div class="opts">
+<label class="opt"><input type="radio" name="bank_talk" value="done"><span class="chip"><span class="lang-sl">Sem se že pogovorila</span><span class="lang-en">Already did</span></span></label>
+<label class="opt"><input type="radio" name="bank_talk" value="would_try"><span class="chip"><span class="lang-sl">Bi poskusila</span><span class="lang-en">I'd try</span></span></label>
+<label class="opt"><input type="radio" name="bank_talk" value="help_prepare"><span class="chip"><span class="lang-sl">Rada bi pomoč pri pripravi</span><span class="lang-en">I'd like help preparing</span></span></label>
+<label class="opt"><input type="radio" name="bank_talk" value="rather_not"><span class="chip"><span class="lang-sl">Raje ne</span><span class="lang-en">Rather not</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<div class="box warn">
+<h4>&#9888;&#65039; <span class="lang-sl">Pazi se prevar</span><span class="lang-en">Watch out for scams</span></h4>
+<ul>
+<li><span class="lang-sl">Nikoli ne plačaj za »službo« ali »izbris dolgov«.</span><span class="lang-en">Never pay for a "job" or "debt removal".</span></li>
+<li><span class="lang-sl">Bolha.com uporabnikov nikoli ne kontaktira prek Viberja ali WhatsAppa.</span><span class="lang-en">Bolha.com never contacts users via Viber or WhatsApp.</span></li>
+</ul>
+</div>
+
+<!-- ================= KONEC ================= -->
+<h2 class="section-title" id="konec">&#128150; <span class="lang-sl">Še zadnje</span><span class="lang-en">One last thing</span></h2>
+
+<div class="q" data-q="first_step" data-type="single">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Kateri EN majhen korak narediš ta teden?</span><span class="lang-en">Which ONE small step will you take this week?</span></div>
+<div class="opts">
+<label class="opt"><input type="radio" name="first_step" value="call_agency"><span class="chip"><span class="lang-sl">Pokličem agencijo</span><span class="lang-en">Call an agency</span></span></label>
+<label class="opt"><input type="radio" name="first_step" value="cv_vet"><span class="chip"><span class="lang-sl">Pošljem CV veterini</span><span class="lang-en">Send my CV to a vet clinic</span></span></label>
+<label class="opt"><input type="radio" name="first_step" value="post_ad"><span class="chip"><span class="lang-sl">Objavim oglas za varstvo</span><span class="lang-en">Post a pet-sitting ad</span></span></label>
+<label class="opt"><input type="radio" name="first_step" value="call_stable"><span class="chip"><span class="lang-sl">Pokličem konjušnico</span><span class="lang-en">Call a stable</span></span></label>
+<label class="opt"><input type="radio" name="first_step" value="career_centre"><span class="chip"><span class="lang-sl">Grem v karierno središče</span><span class="lang-en">Visit a career centre</span></span></label>
+<label class="opt"><input type="radio" name="first_step" value="course"><span class="chip"><span class="lang-sl">Prijavim se na tečaj</span><span class="lang-en">Sign up for the course</span></span></label>
+<label class="opt"><input type="radio" name="first_step" value="unsure"><span class="chip"><span class="lang-sl">Še ne vem</span><span class="lang-en">Not sure yet</span></span></label>
+</div>
+<textarea></textarea>
+</div>
+
+<div class="q" data-q="heart" data-type="text">
+<div class="q-badge">&#10024;</div>
+<div class="q-text"><span class="lang-sl">Kaj bi mi še rada povedala?</span><span class="lang-en">Anything else you'd like to tell me?</span></div>
+<div class="q-hint"><span class="lang-sl">Kaj te skrbi, kaj te veseli, kaj sem pozabil … &#128150;</span><span class="lang-en">What worries you, what excites you, what I forgot … &#128150;</span></div>
+<textarea class="big"></textarea>
+</div>
+
+<div class="box love">
+<h4>&#128150;</h4>
+<span class="lang-sl">Hvala, da si si vzela čas. Ne rabiš vsega naenkrat — en klic je dovolj. Tvoje znanje z živalmi je resnično vredno denarja.</span><span class="lang-en">Thank you for taking the time. You don't need everything at once — one call is enough. Your skills with animals are genuinely worth money.</span>
+</div>
+
 </div>
 
 <div class="button-area">
-<button type="button" class="btn btn-main" id="sendBtn" onclick="sendAnswers()"><span class="lang-sl">&#128228; Pošlji odgovore</span><span class="lang-en">&#128228; Send answers</span></button>
-<button type="button" class="btn btn-sec" onclick="copyAnswers()"><span class="lang-sl">&#128203; Kopiraj</span><span class="lang-en">&#128203; Copy</span></button>
-<button type="button" class="btn btn-sec" onclick="clearAll()"><span class="lang-sl">&#128465; Pobriši</span><span class="lang-en">&#128465; Clear</span></button>
+<div class="button-inner">
+<div class="counter" id="counter">0 / 0</div>
+<button type="button" class="btn btn-main" onclick="sendAnswers()"><span class="lang-sl">&#128228; Pošlji</span><span class="lang-en">&#128228; Send</span></button>
+<button type="button" class="btn btn-sec" onclick="copyAnswers()">&#128203;</button>
+</div>
 </div>
 
 <script>
-var STORAGE_KEY='ninaQuizK2';
+var STORAGE_KEY='ninaKorak2Brosura';
 var LANG_KEY='ninaQuizLang';
-var IDS=['q1_1','q1_2','q1_3','q1_4','q1_5','q1_6','q2_1','q2_2','q2_3','q2_4','q2_5','q3_1','q3_2','q3_3','q3_4','q4_1','q4_2','q4_3','q5_1','q5_2','q5_3','q5_4','q5_5'];
-var TOTAL=IDS.length;
-
-var LABELS_SL={
-q1_1:'Katera živalska dela te najbolj zanimajo? Izberi več, če želiš.',q1_2:'Bi raje delala z domačimi živalmi, kmetijskimi ali divjimi živalmi?',q1_3:'Spomniš se kaj konkretnega iz šolanja okoljevarstvenega tehnika, kar bi rada ponovno delala?',q1_4:'Ker si bila trenerka jahanja — bi rada poskusila delo v konjušnici ali na kmetiji s konji?',q1_5:'Na veterinarskem bi morale biti tudi lastniki živali (stranke). Kako bi se počutila ob tem?',q1_6:'Ali bi šla na kratek tečaj ali usposabljanje za živali (npr. 2–6 mesecev), če bi to odprlo boljšo službo?',
-q2_1:'Katera vrsta proizvodnje te zanima?',q2_2:'Bi delala po jasnih navodilih in ponavljajočih korakih — kot pri pobarvanki?',q2_3:'Bi delala v čisti, klimatizirani proizvodnji (npr. tovarna, pakiranje)?',q2_4:'Bi delala z detajli in kontrolo kakovosti (preverjanje izdelkov, iskanje napak)?',q2_5:'Kaj te skrbi ali moti pri delu v proizvodnji?',
-q3_1:'Bi delala od doma (npr. vnos podatkov, ilustracije po predlogi, urejanje dokumentov)?',q3_2:'Bi raje delala v pisarni podjetja (ne od doma), brez stika s strankami?',q3_3:'Katere programe na računalniku poznaš ali uporabljaš?',q3_4:'Ali bi šla na kratek tečaj (npr. Excel, Canva, osnove grafičnega dizajna), če bi to pomagalo pri službi?',
-q4_1:'V kateri regiji približno živiš ali bi rada delala?',q4_2:'Kako daleč si pripravljena potovati do službe?',q4_3:'Imaš vozniško dovoljenje ali avto? Ali se zanašaš na javni prevoz?',
-q5_1:'Kakšna minimalna mesečna plača bi morala biti, da bi preživela (približno)?',q5_2:'Polni ali delni delovni čas? Kdaj bi lahko začela?',q5_3:'Kaj je pri službi NAJPOMEMBNEJŠE? Razvrsti po pomembnosti.',q5_4:'Od 1 do 10 — kako zanimajo te 3 smeri? (Živali / Proizvodnja / Detajli+računalnik)',q5_5:'Še kaj, kar bi morala vedeti, preden poiščemo konkretne službe?'
-};
-var LABELS_EN={
-q1_1:'Which animal-related jobs interest you most? Pick several if you like.',q1_2:'Would you rather work with pets, farm animals, or wild animals?',q1_3:"Do you remember anything specific from your environmental technician studies you'd like to do again?",q1_4:'Since you were a riding trainer — would you like to try work at a stable or horse farm?',q1_5:'At a vet clinic there would also be pet owners (customers). How would you feel about that?',q1_6:'Would you take a short course or training for animals (e.g. 2–6 months) if it opened a better job?',
-q2_1:'Which type of production interests you?',q2_2:'Would you work with clear instructions and repeating steps — like with coloring books?',q2_3:'Would you work in a clean, climate-controlled factory (e.g. packaging, assembly)?',q2_4:'Would you work with details and quality control (checking products, finding defects)?',q2_5:'What worries or bothers you about working in production?',
-q3_1:'Would you work from home (e.g. data entry, illustrations from templates, document editing)?',q3_2:'Would you rather work in a company office (not from home), without customer contact?',q3_3:'Which computer programs do you know or use?',q3_4:'Would you take a short course (e.g. Excel, Canva, basic graphic design) if it helped with a job?',
-q4_1:'In which region do you roughly live or want to work?',q4_2:'How far are you willing to travel to work?',q4_3:"Do you have a driver's license or car? Or do you rely on public transport?",
-q5_1:'What minimum monthly pay would you need to live on (roughly)?',q5_2:'Full-time or part-time? When could you start?',q5_3:'What matters MOST in a job? Rank by importance.',q5_4:'From 1 to 10 — how interested are you in these 3 directions? (Animals / Production / Details+computer)',q5_5:'Anything else I should know before we search for concrete jobs?'
-};
-var REGION_OPTS={
-sl:[{v:'',l:'— izberi regijo —'},{v:'ljubljana',l:'Ljubljana in okolica'},{v:'maribor',l:'Maribor in okolica'},{v:'celje',l:'Celje in okolica'},{v:'koper',l:'Koper / Obala'},{v:'novo_mesto',l:'Novo mesto in okolica'},{v:'pomurje',l:'Pomurje'},{v:'koroska',l:'Koroška'},{v:'gorenjska',l:'Gorenjska'},{v:'notranjska',l:'Notranjska'},{v:'zasavje',l:'Zasavje'},{v:'posavje',l:'Posavje'},{v:'jugovzhod',l:'Jugovzhodna Slovenija'},{v:'drugo',l:'Druga regija (splošno)'}],
-en:[{v:'',l:'— choose region —'},{v:'ljubljana',l:'Ljubljana area'},{v:'maribor',l:'Maribor area'},{v:'celje',l:'Celje area'},{v:'koper',l:'Koper / Coast'},{v:'novo_mesto',l:'Novo mesto area'},{v:'pomurje',l:'Pomurje'},{v:'koroska',l:'Carinthia (Koroška)'},{v:'gorenjska',l:'Gorenjska'},{v:'notranjska',l:'Notranjska'},{v:'zasavje',l:'Zasavje'},{v:'posavje',l:'Posavje'},{v:'jugovzhod',l:'Southeast Slovenia'},{v:'drugo',l:'Other region (general)'}]
-};
-
-function renderRegion(){
-var sel=document.getElementById('q4_1');
-if(!sel)return;
-var cur=sel.value;
-var opts=REGION_OPTS[getLang()];
-var html='';
-for(var i=0;i<opts.length;i++)html+='<option value="'+opts[i].v+'">'+opts[i].l+'</option>';
-sel.innerHTML=html;
-if(cur)sel.value=cur;
-}
+var QS=document.querySelectorAll('.q');
 
 function getLang(){return document.body.className==='en'?'en':'sl';}
 
@@ -229,131 +584,127 @@ document.body.className=lang;
 document.getElementById('btn-sl').className=lang==='sl'?'active':'';
 document.getElementById('btn-en').className=lang==='en'?'active':'';
 try{localStorage.setItem(LANG_KEY,lang);}catch(e){}
-renderRegion();
-updateQNumbers();
-updateProgress();
+refresh();
 }
 
-function updateQNumbers(){
+function isAnswered(q){
+var ta=q.querySelector('textarea');
+return !!q.querySelector('input:checked')||(ta&&ta.value.trim().length>0);
+}
+
+function refresh(){
 var lang=getLang();
-var nums=document.querySelectorAll('.qn');
-for(var i=0;i<nums.length;i++){
-nums[i].textContent=(lang==='sl'?'Vprašanje ':'Question ')+(i+1);
+var total=QS.length,done=0;
+for(var i=0;i<QS.length;i++){
+var q=QS[i];
+var a=isAnswered(q);
+if(a)done++;
+q.className=a?'q done':'q';
+var label=lang==='sl'?'Hitro vprašanje ':'Quick question ';
+q.querySelector('.q-badge').textContent=(a?'✓ ':'✨ ')+label+(i+1)+' / '+total;
+var ta=q.querySelector('textarea');
+if(ta)ta.placeholder=q.getAttribute('data-type')==='text'?(lang==='sl'?'Piši kar po svoje …':'Just write freely …'):(lang==='sl'?'Dodaj svoje besede (neobvezno) …':'Add your own words (optional) …');
 }
-var ph=lang==='sl'?'Piši kar po svoje...':'Just write freely...';
-var tas=document.querySelectorAll('textarea');
-for(var j=0;j<tas.length;j++)tas[j].placeholder=ph;
+document.getElementById('counter').textContent=done+' / '+total+(done===total?' 🎉':'');
 }
 
-function saveAnswers(){
+function save(){
 var data={};
-for(var i=0;i<IDS.length;i++){
-var el=document.getElementById(IDS[i]);
-if(el)data[IDS[i]]=el.value;
+for(var i=0;i<QS.length;i++){
+var q=QS[i],id=q.getAttribute('data-q');
+var vals=[],ins=q.querySelectorAll('input:checked');
+for(var j=0;j<ins.length;j++)vals.push(ins[j].value);
+var ta=q.querySelector('textarea');
+data[id]={v:vals,note:ta?ta.value:''};
 }
 try{localStorage.setItem(STORAGE_KEY,JSON.stringify(data));}catch(e){}
 var a=document.getElementById('autosave');
 a.textContent=getLang()==='sl'?'✨ shranjeno':'✨ saved';
-setTimeout(function(){a.textContent='';},1500);
-updateProgress();
+clearTimeout(a._t);a._t=setTimeout(function(){a.textContent='';},1400);
+refresh();
 }
 
-function loadAnswers(){
+function load(){
 try{
-var saved=localStorage.getItem(STORAGE_KEY);
-if(saved){
-var data=JSON.parse(saved);
-for(var k in data){
-var el=document.getElementById(k);
-if(el)el.value=data[k];
-}
+var raw=localStorage.getItem(STORAGE_KEY);
+if(!raw)return;
+var data=JSON.parse(raw);
+for(var i=0;i<QS.length;i++){
+var q=QS[i],d=data[q.getAttribute('data-q')];
+if(!d)continue;
+var ins=q.querySelectorAll('input');
+for(var j=0;j<ins.length;j++)ins[j].checked=d.v.indexOf(ins[j].value)>-1;
+var ta=q.querySelector('textarea');
+if(ta)ta.value=d.note||'';
 }
 }catch(e){}
 }
 
-function updateProgress(){
-var filled=0;
-for(var i=0;i<IDS.length;i++){
-var el=document.getElementById(IDS[i]);
-if(el&&el.value.trim())filled++;
-}
-document.getElementById('progressBar').style.width=(filled/TOTAL*100)+'%';
-var s=document.getElementById('stats');
-s.textContent=getLang()==='sl'?(filled+' / '+TOTAL+' odgovorjenih'):(filled+' / '+TOTAL+' answered');
-}
-
-function getVal(id){
-var el=document.getElementById(id);
-if(!el||!el.value.trim())return getLang()==='sl'?'(brez odgovora)':'(no answer)';
-if(id==='q4_1')return el.options[el.selectedIndex].text;
-return el.value.trim();
+function labelText(input){
+var chip=input.nextElementSibling;
+var en=chip.querySelector('.lang-en');
+return (en?en.textContent:chip.textContent).trim();
 }
 
 function buildText(){
-var lang=getLang();
-var labels=lang==='sl'?LABELS_SL:LABELS_EN;
 var line='========================================\n';
-var t=line;
-t+=(lang==='sl'?'  NINA — KORAK 2: POGLABLJANJE\n':'  NINA — STEP 2: GOING DEEPER\n');
-t+=(lang==='sl'?'  Datum: ':'  Date: ')+new Date().toLocaleDateString(lang==='sl'?'sl-SI':'en-GB')+'\n';
-t+=line+'\n';
-for(var i=0;i<IDS.length;i++){
-t+=labels[IDS[i]]+'\n'+getVal(IDS[i])+'\n\n';
+var t=line+'  NINA — STEP 2 (brochure questions)\n  '+new Date().toLocaleDateString('en-GB')+'\n'+line+'\n';
+for(var i=0;i<QS.length;i++){
+var q=QS[i];
+var qt=q.querySelector('.q-text .lang-en').textContent.trim();
+t+=(i+1)+'. '+qt+'\n';
+var ins=q.querySelectorAll('input:checked'),picked=[];
+for(var j=0;j<ins.length;j++)picked.push(labelText(ins[j]));
+if(picked.length)t+='   → '+picked.join(', ')+'\n';
+var ta=q.querySelector('textarea');
+if(ta&&ta.value.trim())t+='   ✎ '+ta.value.trim().replace(/\n/g,'\n     ')+'\n';
+if(!picked.length&&!(ta&&ta.value.trim()))t+='   (no answer)\n';
+t+='\n';
 }
-t+=line+(lang==='sl'?'  KONEC — korak 3\n':'  END — step 3\n')+line;
-return t;
+return t+line;
 }
 
 function showToast(msg){
 var t=document.getElementById('toast');
-t.textContent=msg;
-t.className='toast show';
+t.textContent=msg;t.className='toast show';
 setTimeout(function(){t.className='toast';},3000);
 }
 
 function sendAnswers(){
 var text=buildText();
 if(navigator.share){
-navigator.share({title:getLang()==='sl'?'Nina Korak 2':'Nina Step 2',text:text}).then(function(){
-showToast(getLang()==='sl'?'Super! Izberi WhatsApp.':'Nice! Pick WhatsApp.');
-}).catch(function(e){if(e.name!=='AbortError')copyAnswers();});
+navigator.share({title:'Nina — Step 2',text:text}).catch(function(e){if(e&&e.name!=='AbortError')copyAnswers();});
 }else{copyAnswers();}
 }
 
 function copyAnswers(){
 var text=buildText();
+var ok=getLang()==='sl'?'Kopirano! Prilepi v WhatsApp. 💌':'Copied! Paste it into WhatsApp. 💌';
 if(navigator.clipboard&&navigator.clipboard.writeText){
-navigator.clipboard.writeText(text).then(function(){
-showToast(getLang()==='sl'?'Kopirano! Prilepi v WhatsApp.':'Copied! Paste in WhatsApp.');
-});
+navigator.clipboard.writeText(text).then(function(){showToast(ok);},function(){fallbackCopy(text,ok);});
 return;
 }
-var ta=document.createElement('textarea');
-ta.value=text;ta.style.position='fixed';ta.style.left='-9999px';
-document.body.appendChild(ta);ta.select();
-try{document.execCommand('copy');showToast(getLang()==='sl'?'Kopirano!':'Copied!');}catch(e){}
-document.body.removeChild(ta);
+fallbackCopy(text,ok);
 }
 
-function clearAll(){
-var msg=getLang()==='sl'?'Res pobrišem vse odgovore? Tega ni mogoče razveljaviti.':'Really delete all answers? This cannot be undone.';
-if(!confirm(msg))return;
-for(var i=0;i<IDS.length;i++){var el=document.getElementById(IDS[i]);if(el)el.value='';}
-try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
-updateProgress();
+function fallbackCopy(text,ok){
+var ta=document.createElement('textarea');
+ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.left='-9999px';
+document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,text.length);
+try{document.execCommand('copy');showToast(ok);}catch(e){}
+document.body.removeChild(ta);
 }
 
 (function init(){
 var lang='sl';
 try{lang=localStorage.getItem(LANG_KEY)||'sl';}catch(e){}
+var m=location.search.match(/lang=(sl|en)/);if(m)lang=m[1];
+load();
 setLang(lang);
-renderRegion();
-loadAnswers();
-updateProgress();
-var els=document.querySelectorAll('textarea,select');
+var els=document.querySelectorAll('.q input,.q textarea');
 for(var i=0;i<els.length;i++){
-els[i].addEventListener('input',saveAnswers);
-els[i].addEventListener('change',saveAnswers);
+els[i].addEventListener('change',save);
+els[i].addEventListener('input',save);
 }
 })();
 </script>
